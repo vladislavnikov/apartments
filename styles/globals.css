@@ -30,6 +30,8 @@ html {
 html,
 body,
 #app {
+  
+  min-width: 500px;
   height: 100%;
 }
 
