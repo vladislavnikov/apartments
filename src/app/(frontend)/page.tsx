@@ -2,7 +2,8 @@ import { getPayload } from 'payload'
 import React from 'react'
 
 import config from '@/payload.config'
-import './styles.css'
+import '../../../styles/globals.css'
+import TopNav from 'components/navbar'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
@@ -14,5 +15,9 @@ export default async function HomePage() {
 
   console.log('Pages:', pages)
 
-  return <> </>
+  return (
+    <>
+      <TopNav />{' '}
+    </>
+  )
 }
