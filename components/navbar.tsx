@@ -19,8 +19,18 @@ export default function TopNav() {
 
   const menuItems =
     selectedLanguage === 'en'
-      ? ['Home', 'Apartments', 'Nearby Attractions', 'Book an Apartment']
-      : ['Начало', 'Апартаменти', 'Забележителности в близост', 'Резервирай апартамент']
+      ? [
+          { label: 'Home', href: '/' },
+          { label: 'Apartments', href: '/apartments' },
+          { label: 'Nearby Attractions', href: '/attractions' },
+          { label: 'Book an Apartment', href: '/booking' },
+        ]
+      : [
+          { label: 'Начало', href: '/' },
+          { label: 'Апартаменти', href: '/apartments' },
+          { label: 'Забележителности в близост', href: '/attractions' },
+          { label: 'Резервирай апартамент', href: '/booking' },
+        ]
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#F0FFFF]">
@@ -32,10 +42,11 @@ export default function TopNav() {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex gap-0 text-black" justify="center">
         {menuItems.map((item, index) => (
-          <div key={index} className="flex items-center">
+          <div key={item.href} className="flex items-center">
             <NavbarItem>
-              <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}>{item}</Link>
+              <Link href={item.href}>{item.label}</Link>
             </NavbarItem>
+
             {index !== menuItems.length - 1 && (
               <Divider orientation="vertical" className="h-6 mx-4 border-black" />
             )}
@@ -43,25 +54,20 @@ export default function TopNav() {
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
-        {!isMenuOpen && (
-          <NavbarItem>
-            <LanguageChanger />
-          </NavbarItem>
-        )}
+        <NavbarItem>
+          <LanguageChanger />
+        </NavbarItem>
       </NavbarContent>
       <NavbarMenu
         className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden bg-[#F0FFFF] text-black`}
       >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={index}>
-            <Link className="w-full" href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}>
-              {item}
+            <Link className="w-full" href={item.href}>
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem>
-          <LanguageChanger />
-        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   )

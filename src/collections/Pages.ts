@@ -33,6 +33,7 @@ export const Pages: CollectionConfig = {
           name: 'sectionImage',
           type: 'upload',
           relationTo: 'media',
+          hasMany: true,
         },
       ],
     },
