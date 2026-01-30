@@ -48,7 +48,7 @@ export default function TopNav() {
             </NavbarItem>
 
             {index !== menuItems.length - 1 && (
-              <Divider orientation="vertical" className="h-6 mx-4 border-black" />
+              <Divider orientation="vertical" className="h-5 mx-4 border-black" />
             )}
           </div>
         ))}

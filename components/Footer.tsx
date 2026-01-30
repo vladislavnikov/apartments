@@ -10,7 +10,7 @@ export default function Footer({ language }: { language?: string }) {
       className="relative bg-cover bg-center"
       style={{ backgroundImage: "url('/footer.avif')" }}
     >
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/85 py-10 rounded-md">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/85 py-5 rounded-md">
         <div className="flex flex-col md:flex-row justify-center gap-24 text-sm px-6 text-white">
           <div className="text-center">
             <h3 className="font-semibold mb-4">
