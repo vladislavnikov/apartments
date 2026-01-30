@@ -19,6 +19,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
+      <head>
+        <title>ApartmentsByTheRiver</title>
+      </head>
       <body>
         <LanguageProvider>
           <TopNav />

@@ -10,10 +10,8 @@ export default function Footer({ language }: { language?: string }) {
       className="relative bg-cover bg-center"
       style={{ backgroundImage: "url('/footer.avif')" }}
     >
-      {/* BLACK BOX */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/85 py-10 rounded-md">
         <div className="flex flex-col md:flex-row justify-center gap-24 text-sm px-6 text-white">
-          {/* CONTACT */}
           <div className="text-center">
             <h3 className="font-semibold mb-4">
               {language === 'en' ? 'Contact Us' : 'Свържете се с нас'}
@@ -31,14 +29,10 @@ export default function Footer({ language }: { language?: string }) {
             <p>{language === 'en' ? 'Bulgaria' : 'България'}</p>
           </div>
         </div>
-
-        {/* COPYRIGHT */}
         <div className="mt-8 text-center text-xs text-gray-400">
           © {new Date().getFullYear()} Apartments by the River. All rights reserved.
         </div>
       </div>
-
-      {/* FOOTER IMAGE HEIGHT */}
       <div className="h-[420px]" />
     </footer>
   )

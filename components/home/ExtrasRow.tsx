@@ -24,8 +24,8 @@ export default function ExtrasRow({ selectedLanguage }: { selectedLanguage: stri
         ]
 
   return (
-    <div className="bg-white py-">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-2 text-center">
+    <div className="bg-white py-5">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-1 text-center">
         {extras.map((extra, index) => (
           <div key={index} className="flex flex-col items-center gap-1">
             <Image

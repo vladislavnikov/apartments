@@ -5,7 +5,6 @@ import { useLanguage } from 'components/language-provider'
 import VerticalCarousel from 'components/home/verticalCarousel'
 import ExtrasRow from 'components/home/ExtrasRow'
 import WhyChooseUs from 'components/home/WhyChooseUs'
-import Footer from 'components/Footer'
 
 export default function App() {
   const { selectedLanguage } = useLanguage()
