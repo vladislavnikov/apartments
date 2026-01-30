@@ -1,18 +1,13 @@
-import { getPayload } from 'payload'
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
+import '../../../styles/globals.css'
+import { useLanguage } from 'components/language-provider'
+import Home from './home/page'
 
-import config from '@/payload.config'
-import './styles.css'
+export default function App() {
+  const { selectedLanguage } = useLanguage()
 
-export default async function HomePage() {
-  const payload = await getPayload({ config })
+  useEffect(() => {}, [selectedLanguage])
 
-  const pages = await payload.find({
-    collection: 'pages',
-    locale: 'bg',
-  })
-
-  console.log('Pages:', pages)
-
-  return <> </>
+  return <Home selectedLanguage={selectedLanguage} />
 }

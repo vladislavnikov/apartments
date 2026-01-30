@@ -1,19 +1,19 @@
 import type { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
-  slug: 'pages', // Името на колекцията
+  slug: 'pages',
   access: {
     read: () => true,
   },
   fields: [
     {
       name: 'title',
-      type: 'text', // Заглавие на страницата
+      type: 'text',
       localized: true,
     },
     {
       name: 'sections',
-      type: 'array', // За динамични подсекции
+      type: 'array',
       fields: [
         {
           name: 'sectionTitle',
@@ -33,6 +33,7 @@ export const Pages: CollectionConfig = {
           name: 'sectionImage',
           type: 'upload',
           relationTo: 'media',
+          hasMany: true,
         },
       ],
     },

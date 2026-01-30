@@ -187,7 +187,7 @@ export interface Page {
           };
           [k: string]: unknown;
         } | null;
-        sectionImage?: (number | null) | Media;
+        sectionImage?: (number | Media)[] | null;
         id?: string | null;
       }[]
     | null;
