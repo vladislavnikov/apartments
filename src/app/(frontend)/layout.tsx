@@ -20,10 +20,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>ApartmentsByTheRiver</title>
       </head>
-      <body>
+      <body className="flex flex-col h-screen">
         <LanguageProvider>
           <TopNav />
-          <main>{children}</main>
+          <main className="flex flex-grow">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>

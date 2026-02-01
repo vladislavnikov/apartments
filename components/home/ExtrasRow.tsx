@@ -40,7 +40,7 @@ export default function ExtrasRow() {
               height={25}
               className="opacity-90 contrast-100 brightness-50"
             />
-            <p className="text-sm text-gray-700 leading-none max-w-[140px]">{extra.label}</p>
+            <span className="text-sm text-gray-700 leading-none max-w-[140px]">{extra.label}</span>
           </div>
         ))}
       </div>

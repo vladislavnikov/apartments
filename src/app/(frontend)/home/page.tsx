@@ -35,7 +35,7 @@ export default function Home({ selectedLanguage }: HomeProps) {
     )
 
   return (
-    <>
+    <div className="w-full">
       <VerticalCarousel images={images} />
       <ExtrasRow />
       <div className="bg-red-50 py-0 flex items-center justify-center">
@@ -44,6 +44,6 @@ export default function Home({ selectedLanguage }: HomeProps) {
         </p>
       </div>
       <WhyChooseUs language={selectedLanguage} />
-    </>
+    </div>
   )
 }
