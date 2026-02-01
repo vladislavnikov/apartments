@@ -1,12 +1,11 @@
-'use client'
-import { useLanguage } from 'components/language-provider'
+'use server'
+import { Language, useLanguage } from 'components/language-provider'
 import ApartmentsData from './data/ApartmentsData'
 
-export default function Apartments() {
-  const { selectedLanguage } = useLanguage()
+export default async function Apartments() {
   return (
     <div>
-      <ApartmentsData language={selectedLanguage} />
+      <ApartmentsData language={Language.EN} />
     </div>
   )
 }

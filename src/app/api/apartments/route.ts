@@ -2,7 +2,6 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { Language } from 'components/language-provider'
-import { parseApartments } from '../lib/jsonDestructor'
 
 export async function getApartments(language: Language) {
   const payload = await getPayload({ config })

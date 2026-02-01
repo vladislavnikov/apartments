@@ -5,6 +5,6 @@ type Props = { language: Language }
 
 export default async function ApartmentsData({ language }: Props) {
   const apartment = await getApartments(language)
-  console.log(apartment)
+  console.log('apartment:', apartment)
   return <div></div>
 }
