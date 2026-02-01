@@ -8,7 +8,7 @@ export default function Contact() {
           <h2 className="text-xl font-semibold text-black">Get in Touch</h2>
         </div>
       </div>
-      <div className="w-full bg-[#F0FFFF]">
+      <div className="w-full bg-gray-100">
         <div className="max-w-3xl mx-auto px-4 text-center py-6">
           <p
             className="
@@ -29,6 +29,7 @@ export default function Contact() {
           </p>
         </div>
       </div>
+      <div className="bg-white p-5"></div>
     </section>
   )
 }

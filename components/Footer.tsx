@@ -14,27 +14,23 @@ export default function Footer() {
       style={{ backgroundImage: "url('/footer.avif')" }}
     >
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-black/85 py-5 rounded-md">
-        <div className="flex flex-col md:flex-row justify-center gap-24 text-sm px-6 text-white">
+        <div className="flex flex-col md:flex-row justify-center gap-20 text-sm text-white">
           <div className="text-center">
-            <h3 className="font-semibold mb-4">
+            <h3 className="font-semibold">
               {selectedLanguage === Language.EN ? 'Contact Us' : 'Свържете се с нас'}
             </h3>
-            <p className="mb-2">office@todorov-co.com</p>
-            <p className="mb-4">+359 89 910 0537</p>
+            <p>office@todorov-co.com</p>
+            <p>+359 89 910 0537</p>
             <div className="flex justify-center">
               <FaFacebookF />
             </div>
           </div>
           <div className="text-center">
-            <h3 className="font-semibold mb-4">
+            <h3 className="font-semibold">
               {selectedLanguage === Language.EN ? 'Address' : 'Адрес'}
             </h3>
-            <p className="mb-2">
-              {selectedLanguage === Language.EN ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}
-            </p>
-            <p className="mb-2">
-              {selectedLanguage === Language.EN ? 'Plovdiv, 4000' : 'Пловдив, 4000'}
-            </p>
+            <p>{selectedLanguage === Language.EN ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}</p>
+            <p>{selectedLanguage === Language.EN ? 'Plovdiv, 4000' : 'Пловдив, 4000'}</p>
             <p>{selectedLanguage === Language.EN ? 'Bulgaria' : 'България'}</p>
           </div>
         </div>

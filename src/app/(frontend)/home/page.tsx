@@ -1,6 +1,7 @@
 import ExtrasRow from 'components/home/ExtrasRow'
 import VerticalCarousel from 'components/home/verticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
+import { Language } from 'components/language-provider'
 
 type HomeProps = {
   selectedLanguage: string
@@ -16,7 +17,7 @@ const images = [
 // This is now a proper React component signature.
 export default function Home({ selectedLanguage }: HomeProps) {
   const welcomeText =
-    selectedLanguage === 'en' ? (
+    selectedLanguage === Language.EN ? (
       <>
         Welcome to <em>Apartments by the River</em>, where comfort meets serenity.
         {'\n'}
