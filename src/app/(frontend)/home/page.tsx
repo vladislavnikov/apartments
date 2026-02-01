@@ -1,8 +1,6 @@
-// Remove `use server` here – it’s for marking server actions, not components:contentReference[oaicite:0]{index=0}.
 import ExtrasRow from 'components/home/ExtrasRow'
 import VerticalCarousel from 'components/home/verticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
-import { ReactNode } from 'react'
 
 type HomeProps = {
   selectedLanguage: string
@@ -38,7 +36,7 @@ export default function Home({ selectedLanguage }: HomeProps) {
   return (
     <>
       <VerticalCarousel images={images} />
-      <ExtrasRow selectedLanguage={selectedLanguage} />
+      <ExtrasRow />
       <div className="bg-red-50 py-0 flex items-center justify-center">
         <p className="max-w-4xl text-sm md:text-base text-black leading-relaxed whitespace-pre-line px-4 text-center">
           {welcomeText}

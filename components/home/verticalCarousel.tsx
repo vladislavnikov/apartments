@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
@@ -9,7 +10,6 @@ const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
 
-  // GSAP animation for auto sliding
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))

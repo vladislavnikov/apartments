@@ -2,14 +2,14 @@
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { placesBg, placesEn } from './content'
-import { useLanguage } from 'components/language-provider'
+import { Language, useLanguage } from 'components/language-provider'
 
 export default function ExplorePlovdiv() {
   const { selectedLanguage } = useLanguage()
 
   useEffect(() => {}, [selectedLanguage])
 
-  const places = selectedLanguage === 'bg' ? placesBg : placesEn
+  const places = selectedLanguage === Language.BG ? placesBg : placesEn
 
   return (
     <>

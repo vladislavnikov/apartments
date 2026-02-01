@@ -1,9 +1,12 @@
 'use client'
 import React, { useEffect } from 'react'
 import { FaFacebookF } from 'react-icons/fa'
+import { Language, useLanguage } from './language-provider'
 
-export default function Footer({ language }: { language?: string }) {
-  useEffect(() => {}, [language])
+export default function Footer() {
+  const { selectedLanguage } = useLanguage()
+
+  useEffect(() => {}, [selectedLanguage])
 
   return (
     <footer
@@ -14,7 +17,7 @@ export default function Footer({ language }: { language?: string }) {
         <div className="flex flex-col md:flex-row justify-center gap-24 text-sm px-6 text-white">
           <div className="text-center">
             <h3 className="font-semibold mb-4">
-              {language === 'en' ? 'Contact Us' : 'Свържете се с нас'}
+              {selectedLanguage === Language.EN ? 'Contact Us' : 'Свържете се с нас'}
             </h3>
             <p className="mb-2">office@todorov-co.com</p>
             <p className="mb-4">+359 89 910 0537</p>
@@ -23,10 +26,16 @@ export default function Footer({ language }: { language?: string }) {
             </div>
           </div>
           <div className="text-center">
-            <h3 className="font-semibold mb-4">{language === 'en' ? 'Address' : 'Адрес'}</h3>
-            <p className="mb-2">{language === 'en' ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}</p>
-            <p className="mb-2">{language === 'en' ? 'Plovdiv, 4000' : 'Пловдив, 4000'}</p>
-            <p>{language === 'en' ? 'Bulgaria' : 'България'}</p>
+            <h3 className="font-semibold mb-4">
+              {selectedLanguage === Language.EN ? 'Address' : 'Адрес'}
+            </h3>
+            <p className="mb-2">
+              {selectedLanguage === Language.EN ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}
+            </p>
+            <p className="mb-2">
+              {selectedLanguage === Language.EN ? 'Plovdiv, 4000' : 'Пловдив, 4000'}
+            </p>
+            <p>{selectedLanguage === Language.EN ? 'Bulgaria' : 'България'}</p>
           </div>
         </div>
         <div className="mt-8 text-center text-xs text-gray-400">

@@ -1,16 +1,21 @@
 'use client'
 import React from 'react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@heroui/react'
-import { useLanguage } from './language-provider'
+import { Language, useLanguage } from './language-provider'
+import { useRouter } from 'next/navigation'
+import { setLanguageAndRevalidate } from '@/app/actions'
 
 export default function LanguageChange() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage()
+  const router = useRouter()
 
-  const selectedValue = selectedLanguage === 'en' ? 'English' : 'Български'
+  const selectedValue = selectedLanguage === Language.EN ? 'English' : 'Български'
 
-  const handleSelectionChange = (keys: any) => {
-    const language = keys.currentKey
-    setSelectedLanguage(language === 'English' ? 'en' : 'bg')
+  const handleSelectionChange = async (keys: any) => {
+    const newLang = keys.currentKey === 'English' ? Language.EN : Language.BG
+    setSelectedLanguage(newLang)
+    await setLanguageAndRevalidate(newLang)
+    router.refresh()
   }
 
   return (

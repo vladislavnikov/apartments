@@ -11,14 +11,14 @@ import {
 } from '@heroui/react'
 import LanguageChanger from './dropdown'
 import Link from 'next/link'
-import { useLanguage } from './language-provider'
+import { Language, useLanguage } from './language-provider'
 
 export default function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { selectedLanguage } = useLanguage()
 
   const menuItems =
-    selectedLanguage === 'en'
+    selectedLanguage === Language.EN
       ? [
           { label: 'Home', href: '/' },
           { label: 'Apartments', href: '/apartments' },

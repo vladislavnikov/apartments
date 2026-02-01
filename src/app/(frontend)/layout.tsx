@@ -1,5 +1,4 @@
-'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import '../../../styles/globals.css'
 import { LanguageProvider, useLanguage } from 'components/language-provider'
 import TopNav from 'components/navbar'
@@ -9,14 +8,13 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-// export const metadata = {
-//   description: 'A blank template using Payload in a Next.js app.',
-//   title: 'Payload Blank Template',
-// }
+export const metadata = {
+  description:
+    'Apartments by the River - Plovdiv. Comfortable and modern apartments for your stay in the heart of the city.',
+  title: 'Apartments by the River',
+}
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const { selectedLanguage } = useLanguage()
-
   return (
     <html lang="en">
       <head>
@@ -26,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <LanguageProvider>
           <TopNav />
           <main>{children}</main>
-          <Footer language={selectedLanguage} />
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

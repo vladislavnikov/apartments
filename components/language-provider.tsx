@@ -1,9 +1,12 @@
 'use client'
 import React, { createContext, useState, useContext } from 'react'
 
-export type Language = 'en' | 'bg'
+export enum Language {
+  EN = 'en',
+  BG = 'bg',
+}
 
-const defaultLanguage: Language = 'en'
+const defaultLanguage: Language = Language.EN
 
 const LanguageContext = createContext<{
   selectedLanguage: Language

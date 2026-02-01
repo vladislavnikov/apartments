@@ -1,15 +1,20 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { Language, useLanguage } from 'components/language-provider'
 
 type Extra = {
   label: string
   imgSrc: string
 }
 
-export default function ExtrasRow({ selectedLanguage }: { selectedLanguage: string }) {
+export default function ExtrasRow() {
+  const { selectedLanguage } = useLanguage()
+
+  useEffect(() => {}, [selectedLanguage])
+
   const extras: Extra[] =
-    selectedLanguage === 'en'
+    selectedLanguage === Language.EN
       ? [
           { label: 'Free Wi-Fi', imgSrc: '/icons/wifi.png' },
           { label: 'Fully Equipped Kitchen', imgSrc: '/icons/kitchen.png' },

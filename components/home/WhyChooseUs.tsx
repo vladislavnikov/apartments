@@ -1,13 +1,14 @@
 'use client'
+import { Language } from 'components/language-provider'
 import React, { useEffect } from 'react'
 
-export default function WhyChooseUs({ language }: { language: string }) {
+export default function WhyChooseUs({ language }: { language: Language }) {
   useEffect(() => {}, [language])
 
-  const heading = language === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
+  const heading = language === Language.EN ? 'Why Choose Us?' : 'Защо да изберете нас?'
 
   const points =
-    language === 'en'
+    language === Language.EN
       ? [
           'Prime location near the city center',
           'Easy access to public transportation',
