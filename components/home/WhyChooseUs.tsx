@@ -1,14 +1,13 @@
 'use client'
-import { Language } from 'components/language-provider'
-import React, { useEffect } from 'react'
 
-export default function WhyChooseUs({ language }: { language: Language }) {
-  useEffect(() => {}, [language])
+import React from 'react'
+import type { Locale } from '@/app/[locale]/home/page'
 
-  const heading = language === Language.EN ? 'Why Choose Us?' : 'Защо да изберете нас?'
+export default function WhyChooseUs({ locale }: { locale: Locale }) {
+  const heading = locale === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
 
   const points =
-    language === Language.EN
+    locale === 'en'
       ? [
           'Prime location near the city center',
           'Easy access to public transportation',
@@ -29,7 +28,7 @@ export default function WhyChooseUs({ language }: { language: Language }) {
   return (
     <section className="bg-white">
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-1 px-10">
-        <div className="">
+        <div>
           <h2 className="text-lg pl-10 pt-8 text-black font-semibold mb-4">{heading}</h2>
 
           <ul className="space-y-2 pl-9 text-sm text-gray-800 list-disc list-inside">
@@ -38,6 +37,7 @@ export default function WhyChooseUs({ language }: { language: Language }) {
             ))}
           </ul>
         </div>
+
         <div className="w-full h-[300px] md:h-[350px] overflow-hidden border">
           <iframe
             title="Apartments by the River"

@@ -1,20 +1,34 @@
 'use client'
+
 import React from 'react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@heroui/react'
-import { Language, useLanguage } from './language-provider'
-import { useRouter } from 'next/navigation'
-import { setLanguageAndRevalidate } from '@/app/actions'
+import { useParams, usePathname, useRouter } from 'next/navigation'
+
+function replaceLocale(pathname: string, newLocale: 'en' | 'bg') {
+  const parts = pathname.split('/').filter(Boolean)
+  if (parts.length === 0) return `/${newLocale}`
+
+  if (parts[0] === 'en' || parts[0] === 'bg') {
+    parts[0] = newLocale
+    return '/' + parts.join('/')
+  }
+
+  return `/${newLocale}/${parts.join('/')}`
+}
 
 export default function LanguageChange() {
-  const { selectedLanguage, setSelectedLanguage } = useLanguage()
   const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams<{ locale?: string }>()
+  const locale = params?.locale === 'bg' ? 'bg' : 'en'
 
-  const selectedValue = selectedLanguage === Language.EN ? 'English' : 'Български'
+  const selectedValue = locale === 'en' ? 'English' : 'Български'
 
-  const handleSelectionChange = async (keys: any) => {
-    const newLang = keys.currentKey === 'English' ? Language.EN : Language.BG
-    setSelectedLanguage(newLang)
-    await setLanguageAndRevalidate(newLang)
+  const handleSelectionChange = (keys: any) => {
+    const picked = keys.currentKey as string
+    const newLocale: 'en' | 'bg' = picked === 'English' ? 'en' : 'bg'
+
+    router.push(replaceLocale(pathname || '/', newLocale))
     router.refresh()
   }
 
@@ -25,10 +39,11 @@ export default function LanguageChange() {
           {selectedValue}
         </Button>
       </DropdownTrigger>
+
       <DropdownMenu
         disallowEmptySelection
         aria-label="Language selection"
-        selectedKeys={new Set([selectedLanguage === 'en' ? 'English' : 'Bulgarian'])}
+        selectedKeys={new Set([locale === 'en' ? 'English' : 'Bulgarian'])}
         selectionMode="single"
         variant="flat"
         onSelectionChange={handleSelectionChange}

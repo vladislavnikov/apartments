@@ -1,23 +1,15 @@
 import ExtrasRow from 'components/home/ExtrasRow'
-import VerticalCarousel from 'components/home/verticalCarousel'
+import { CarouselDefault } from 'components/home/VerticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
-import { Language } from 'components/language-provider'
 
-type HomeProps = {
-  selectedLanguage: string
-}
+type Locale = 'en' | 'bg'
 
-const images = [
-  'https://www.w3schools.com/w3images/fjords.jpg',
-  'https://www.w3schools.com/w3images/mountains.jpg',
-  'https://www.w3schools.com/w3images/nature.jpg',
-  'https://www.w3schools.com/w3images/lights.jpg',
-]
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const loc: Locale = locale === 'bg' ? 'bg' : 'en'
 
-// This is now a proper React component signature.
-export default function Home({ selectedLanguage }: HomeProps) {
   const welcomeText =
-    selectedLanguage === Language.EN ? (
+    loc === 'en' ? (
       <>
         Welcome to <em>Apartments by the River</em>, where comfort meets serenity.
         {'\n'}
@@ -36,14 +28,19 @@ export default function Home({ selectedLanguage }: HomeProps) {
 
   return (
     <div className="w-full">
-      <VerticalCarousel images={images} />
-      <ExtrasRow />
-      <div className="bg-red-50 py-0 flex items-center justify-center">
+      <div className="w-full overflow-x-hidden">
+        <CarouselDefault />
+      </div>
+
+      <ExtrasRow locale={loc} />
+
+      <div className="bg-red-50 py-2 flex items-center justify-center">
         <p className="max-w-4xl text-sm md:text-base text-black leading-relaxed whitespace-pre-line px-4 text-center">
           {welcomeText}
         </p>
       </div>
-      <WhyChooseUs language={selectedLanguage} />
+
+      <WhyChooseUs locale={loc} />
     </div>
   )
 }

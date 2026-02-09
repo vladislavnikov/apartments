@@ -1,19 +1,20 @@
 'use client'
+
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { placesBg, placesEn } from './content'
-import { Language, useLanguage } from 'components/language-provider'
 
-export default function ExplorePlovdiv() {
-  const { selectedLanguage } = useLanguage()
+type Locale = 'en' | 'bg'
 
-  useEffect(() => {}, [selectedLanguage])
-
-  const places = selectedLanguage === Language.BG ? placesBg : placesEn
+export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
+  const places = locale === 'bg' ? placesBg : placesEn
 
   return (
     <section className="bg-white w-full mb-5">
-      <h2 className="text-2xl font-medium text-center py-5 text-black">Explore Plovdiv</h2>
+      <h2 className="text-2xl font-medium text-center py-5 text-black">
+        {locale === 'bg' ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
+      </h2>
+
       {places.map((place, index) => (
         <div key={index} className={place.reverse ? 'bg-white' : 'bg-gray-100'}>
           <div className="max-w-3xl mx-auto px-4">
@@ -27,6 +28,7 @@ export default function ExplorePlovdiv() {
                   className="w-full h-full object-cover"
                 />
               </div>
+
               <div className={place.reverse ? 'md:order-1' : ''}>
                 <h3 className="text-lg font-semibold mb-4 text-black text-center">{place.title}</h3>
                 <p className="text-sm leading-relaxed text-gray-700 text-center">{place.text}</p>

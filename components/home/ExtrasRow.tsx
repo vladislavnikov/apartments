@@ -1,20 +1,17 @@
 'use client'
-import React, { useEffect } from 'react'
+
+import React from 'react'
 import Image from 'next/image'
-import { Language, useLanguage } from 'components/language-provider'
+import type { Locale } from '@/app/[locale]/home/page'
 
 type Extra = {
   label: string
   imgSrc: string
 }
 
-export default function ExtrasRow() {
-  const { selectedLanguage } = useLanguage()
-
-  useEffect(() => {}, [selectedLanguage])
-
+export default function ExtrasRow({ locale }: { locale: Locale }) {
   const extras: Extra[] =
-    selectedLanguage === Language.EN
+    locale === 'en'
       ? [
           { label: 'Free Wi-Fi', imgSrc: '/icons/wifi.png' },
           { label: 'Fully Equipped Kitchen', imgSrc: '/icons/kitchen.png' },
@@ -38,7 +35,7 @@ export default function ExtrasRow() {
               alt={extra.label}
               width={25}
               height={25}
-              className="opacity-90 contrast-100 brightness-50"
+              className="opacity-90 contrast-100 brightness-50 mb-2"
             />
             <span className="text-sm text-gray-700 leading-none max-w-[140px]">{extra.label}</span>
           </div>
