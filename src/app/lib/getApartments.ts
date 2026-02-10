@@ -1,5 +1,4 @@
 import 'server-only'
-
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { parseApartments } from './jsonDestructor'
@@ -9,11 +8,13 @@ export type Locale = 'en' | 'bg'
 export async function getApartments(locale: Locale) {
   const payload = await getPayload({ config })
 
+  const title = locale === 'bg' ? 'Апартаменти' : 'Apartments'
+
   const { docs } = await payload.find({
     collection: 'pages',
-    locale, // ✅ "en" or "bg"
+    locale,
     fallbackLocale: false,
-    where: { title: { equals: 'Apartments' } },
+    where: { title: { equals: title } },
     limit: 1,
   })
 

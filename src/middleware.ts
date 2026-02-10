@@ -22,16 +22,19 @@ function getPreferredLocale(req: NextRequest): (typeof LOCALES)[number] {
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
-  // Skip Next internals + files (images, css, js, etc.)
-  if (pathname.startsWith('/_next') || pathname.startsWith('/api') || pathname.includes('.')) {
+  // ✅ Skip Next internals, API, files, and ADMIN
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/admin') ||
+    pathname.includes('.')
+  ) {
     return NextResponse.next()
   }
 
-  // Already has locale -> continue
   const hasLocale = LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))
   if (hasLocale) return NextResponse.next()
 
-  // Redirect /something -> /en/something (or /bg/...)
   const locale = getPreferredLocale(req)
   const url = req.nextUrl.clone()
   url.pathname = `/${locale}${pathname}`
@@ -40,5 +43,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|.*\\..*).*)'],
+  matcher: ['/((?!_next|api|admin|.*\\..*).*)'],
 }
