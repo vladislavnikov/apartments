@@ -1,16 +1,20 @@
+import 'server-only'
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { Language } from 'components/language-provider'
 import { parseApartments } from '../lib/jsonDestructor'
 
-export async function getApartments(language: Language) {
+export type Locale = 'en' | 'bg'
+
+export async function getApartments(locale: Locale) {
   const payload = await getPayload({ config })
+
+  const title = locale === 'bg' ? 'Апартаменти' : 'Apartments'
 
   const { docs } = await payload.find({
     collection: 'pages',
-    locale: language,
+    locale,
     fallbackLocale: false,
-    where: { title: { equals: 'Apartments' } },
+    where: { title: { equals: title } },
     limit: 1,
   })
 
@@ -18,11 +22,9 @@ export async function getApartments(language: Language) {
 
   const page = docs[0]
 
-  const parsedSections = page.sections?.map(parseApartments)
-
   return {
     id: page.id,
     title: page.title,
-    sections: parsedSections,
+    sections: page.sections?.map(parseApartments),
   }
 }
