@@ -1,7 +1,7 @@
 import '../../../styles/globals.css'
 import { notFound } from 'next/navigation'
-import TopNav from 'components/navbar'
 import Footer from 'components/Footer'
+import TopNav from 'components/navbar/navbar'
 
 const LOCALES = ['en', 'bg'] as const
 type Locale = (typeof LOCALES)[number]

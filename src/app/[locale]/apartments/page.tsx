@@ -1,5 +1,5 @@
-import ImageCarousel from '../../../../components/ImageCarousel'
 import { getApartments } from '@/app/api/apartments'
+import ImageCarousel from 'components/apartments/ImageCarousel'
 
 type Locale = 'en' | 'bg'
 
