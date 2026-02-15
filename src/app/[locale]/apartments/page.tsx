@@ -27,7 +27,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
           {apartments.sections?.map((s, i) => (
             <article
               key={i}
-              className="grid grid-cols-1 md:grid-cols-2 items-stretch border border-black/10 md:h-[420px] md:max-h-[350px] overflow-hidden"
+              className="grid grid-cols-1 md:grid-cols-2 items-stretch border border-black/10 md:h-[420px] md:max-h-[335px] overflow-hidden"
             >
               <div className={`${pickBg(i)} md:h-full`}>
                 <div className="hidden md:flex h-full items-center justify-center p-10">

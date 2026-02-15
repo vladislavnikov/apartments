@@ -27,11 +27,11 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
   const next = () => setActive((p) => (p + 1) % imgs.length)
 
   return (
-    <div className="relative w-full h-full overflow-fill bg-gray-100 flex items-center justify-center">
+    <div className="relative w-full h-full object-fill bg-gray-100 flex items-center justify-center">
       <img
         src={imgs[safe].url}
         alt={imgs[safe].alt || title}
-        className="w-full h-full object-contain block"
+        className="w-full h-full object-cover"
         loading="lazy"
         draggable={false}
       />
