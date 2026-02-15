@@ -52,15 +52,60 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
         </div>
       )}
       {hasMany && (
+        <div className="absolute z-30 left-1/2 -translate-x-1/2 bottom-3 flex gap-2">
+          {imgs.map((img, idx) => (
+            <button
+              key={img.id ?? idx}
+              type="button"
+              aria-label={`Slide ${idx + 1}`}
+              aria-current={idx === safe}
+              onClick={() => setActive(idx)}
+              className={`h-2.5 w-2.5 rounded-full border border-white/80 ${
+                idx === safe ? 'bg-white' : 'bg-white/40'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+      {hasMany && (
+        <div className="absolute z-30 left-1/2 -translate-x-1/2 bottom-3 flex gap-2">
+          {imgs.map((img, idx) => (
+            <button
+              key={img.id ?? idx}
+              type="button"
+              aria-label={`Slide ${idx + 1}`}
+              aria-current={idx === safe}
+              onClick={() => setActive(idx)}
+              className={`h-2.5 w-2.5 rounded-full border border-white/80 transition-all ${
+                idx === safe ? 'bg-white' : 'bg-white/40'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+      {hasMany && (
         <>
           <button
             type="button"
             aria-label="Previous"
             onClick={prev}
-            className="absolute z-30 left-0 top-0 h-full px-4 flex items-center"
+            className="absolute z-30 left-2 top-1/2 -translate-y-1/2 group"
           >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/25 hover:bg-black/40 text-white text-2xl">
-              ‹
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="w-4 h-4 text-white pr-0.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
             </span>
           </button>
 
@@ -68,10 +113,19 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
             type="button"
             aria-label="Next"
             onClick={next}
-            className="absolute z-30 right-0 top-0 h-full px-4 flex items-center"
+            className="absolute z-30 right-2 top-1/2 -translate-y-1/2 group"
           >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/25 hover:bg-black/40 text-white text-2xl">
-              ›
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="w-4 h-4 text-white  pl-0.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
             </span>
           </button>
         </>
