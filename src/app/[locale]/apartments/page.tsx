@@ -36,8 +36,8 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
 
                     <ul className="space-y-3 text-lg">
                       {s.content.map((line: string, idx: number) => (
-                        <li key={idx} className="flex gap-3">
-                          <span className="mt-3 inline-block h-1.5 w-1.5 rounded-full bg-black/80" />
+                        <li key={idx} className="flex gap-3 items-start">
+                          <span className="mt-3 inline-block h-1.5 w-1.5 rounded-full bg-black/80 flex-shrink-0" />
                           <span>{line}</span>
                         </li>
                       ))}
@@ -48,8 +48,8 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                   <h2 className="text-3xl font-semibold italic mb-6">{s.sectionTitle}</h2>
                   <ul className="space-y-3 text-lg">
                     {s.content.map((line: string, idx: number) => (
-                      <li key={idx} className="flex gap-3">
-                        <span className="inline-block h-1 w-1 rounded-full bg-black/80" />
+                      <li key={idx} className="flex gap-3 items-start">
+                        <span className="mt-3 inline-block h-1.5 w-1.5 rounded-full bg-black/80 flex-shrink-0" />
                         <span>{line}</span>
                       </li>
                     ))}

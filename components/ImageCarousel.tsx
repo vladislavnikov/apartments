@@ -122,7 +122,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 viewBox="0 0 24 24"
                 strokeWidth={2.5}
                 stroke="currentColor"
-                className="w-4 h-4 text-white  pl-0.5"
+                className="w-4 h-4 text-white pl-0.5"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
