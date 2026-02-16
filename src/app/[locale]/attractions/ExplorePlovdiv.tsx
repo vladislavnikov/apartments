@@ -10,8 +10,8 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
   const places = locale === 'bg' ? placesBg : placesEn
 
   return (
-    <section className="bg-white w-full mb-5">
-      <h2 className="text-2xl font-medium text-center py-5 text-black">
+    <section className="bg-white w-full">
+      <h2 className="text-2xl font-medium text-center py-4 text-black">
         {locale === 'bg' ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
       </h2>
 
@@ -29,8 +29,8 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
                 />
               </div>
 
-              <div className={place.reverse ? 'md:order-1' : ''}>
-                <h3 className="text-lg font-semibold mb-4 text-black text-center">{place.title}</h3>
+              <div className={place.reverse ? 'md:order-1 px-4' : 'px-4'}>
+                <h3 className="text-lg font-semibold mb-2 text-black text-center">{place.title}</h3>
                 <p className="text-sm leading-relaxed text-gray-700 text-center">{place.text}</p>
               </div>
             </div>

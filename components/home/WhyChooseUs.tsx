@@ -1,7 +1,7 @@
 'use client'
 
+import { Locale } from '@/app/api/apartments'
 import React from 'react'
-import type { Locale } from '@/app/[locale]/home/page'
 
 export default function WhyChooseUs({ locale }: { locale: Locale }) {
   const heading = locale === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
@@ -29,7 +29,7 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
     <section className="bg-white">
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-1 px-10">
         <div>
-          <h2 className="text-lg pl-10 pt-8 text-black font-semibold mb-4">{heading}</h2>
+          <h2 className="text-lg pl-10 pt-8 text-black font-semibold mb-4 ml-9">{heading}</h2>
 
           <ul className="space-y-2 pl-9 text-sm text-gray-800 list-disc list-inside">
             {points.map((point, index) => (

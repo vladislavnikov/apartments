@@ -21,7 +21,7 @@ export default function Footer() {
               </h3>
               <p>office@todorov-co.com</p>
               <p>+359 89 910 0537</p>
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-2">
                 <FaFacebookF />
               </div>
             </div>

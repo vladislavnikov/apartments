@@ -32,7 +32,9 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
               <div className={`${pickBg(i)} md:h-full`}>
                 <div className="hidden md:flex h-full items-center justify-center p-10">
                   <div className="w-full">
-                    <h3 className="text-xl font-semibold italic mb-5">{s.sectionTitle}</h3>
+                    <h3 className="text-xl font-semibold italic mb-5 text-center">
+                      {s.sectionTitle}
+                    </h3>
 
                     <ul className="space-y-3 text-lg">
                       {s.content.map((line: string, idx: number) => (
@@ -45,7 +47,9 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                   </div>
                 </div>
                 <div className="md:hidden p-8">
-                  <h2 className="text-3xl font-semibold italic mb-6">{s.sectionTitle}</h2>
+                  <h2 className="text-3xl font-semibold italic mb-6 text-center">
+                    {s.sectionTitle}
+                  </h2>
                   <ul className="space-y-3 text-lg">
                     {s.content.map((line: string, idx: number) => (
                       <li key={idx} className="flex gap-3 items-start">

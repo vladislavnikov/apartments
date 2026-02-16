@@ -11,6 +11,27 @@
     --font-mono: "monospace", monospace;
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  height: 100%;
+}
+
+.swiper-slide {
+  height: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
 :root {
   --font-mono: 'Roboto Mono', monospace;
 }

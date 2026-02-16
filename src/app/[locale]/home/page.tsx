@@ -1,5 +1,5 @@
 import ExtrasRow from 'components/home/ExtrasRow'
-import { CarouselDefault } from 'components/home/VerticalCarousel'
+import VerticalImageCarousel from 'components/home/VerticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
 
 type Locale = 'en' | 'bg'
@@ -7,6 +7,12 @@ type Locale = 'en' | 'bg'
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? 'bg' : 'en'
+
+  const images = [
+    { src: '/images/homePage/1.avif', alt: 'Home 1' },
+    { src: '/images/homePage/2.avif', alt: 'Home 2' },
+    { src: '/images/homePage/3.avif', alt: 'Home 3' },
+  ]
 
   const welcomeText =
     loc === 'en' ? (
@@ -28,8 +34,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="w-full">
-      <div className="w-full overflow-x-hidden">
-        <CarouselDefault />
+      <div className="relative w-full overflow-hidden aspect-[21/9] md:aspect-[24/9] max-h-[500px]">
+        <VerticalImageCarousel images={images} />
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
+          <div className="w-full max-w-2xl bg-white/60  px-3 py-8 md:px-12 md:py-10 text-center">
+            <h1 className="text-4xl md:text-4xl font-serif tracking-wide text-black">
+              Apartments by the River
+            </h1>
+
+            <p className="mt-6 text-sm md:text-lg text-black leading-relaxed whitespace-pre-line">
+              One and two-bedroom apartments, situated in the heart of{'\n'}
+              Plovdiv. A brand new building awaiting its visitors, ready to{'\n'}
+              become their favourite place to stay.
+            </p>
+          </div>
+        </div>
       </div>
 
       <ExtrasRow locale={loc} />
