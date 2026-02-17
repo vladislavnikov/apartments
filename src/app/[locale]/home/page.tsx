@@ -32,21 +32,34 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </>
     )
 
+  const main =
+    loc === 'en'
+      ? {
+          title: 'Apartments by the River',
+          text: `
+            One and two-bedroom apartments, situated in the heart of Plovdiv.
+            A brand new building awaiting its visitors, ready to become their favourite place to stay.
+        `,
+        }
+      : {
+          title: 'Апартаменти край реката',
+          text: `
+            Едностайни и двустайни апартаменти, разположени в сърцето на Пловдив.
+            Напълно нова сграда, очакваща своите посетители, готова да стане тяхното любимо място за престой.
+        `,
+        }
+
   return (
     <div className="w-full">
       <div className="relative w-full overflow-hidden aspect-[21/9] md:aspect-[24/9] max-h-[500px]">
         <VerticalImageCarousel images={images} />
         <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
-          <div className="w-full max-w-2xl bg-white/60  px-3 py-8 md:px-12 md:py-10 text-center">
+          <div className="w-full max-w-2xl bg-white/50 px-3 py-8 md:px-12 md:py-10 text-center">
             <h1 className="text-4xl md:text-4xl font-serif tracking-wide text-black">
-              Apartments by the River
+              {main.title}
             </h1>
 
-            <p className="mt-6 text-sm md:text-lg text-black leading-relaxed whitespace-pre-line">
-              One and two-bedroom apartments, situated in the heart of{'\n'}
-              Plovdiv. A brand new building awaiting its visitors, ready to{'\n'}
-              become their favourite place to stay.
-            </p>
+            <p className="mt-2 text-sm md:text-lg text-black ">{main.text}</p>
           </div>
         </div>
       </div>

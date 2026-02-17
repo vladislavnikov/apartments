@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import type { Locale } from '@/app/[locale]/home/page'
+import { Locale } from '@/app/api/apartments'
 
 type Extra = {
   label: string
