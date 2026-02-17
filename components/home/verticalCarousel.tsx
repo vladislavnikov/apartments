@@ -19,7 +19,7 @@ export default function VerticalImageCarousel({ images }: Props) {
       mousewheel={{ forceToAxis: true }}
       keyboard={{ enabled: true }}
       modules={[Pagination, Mousewheel, Keyboard, Autoplay]}
-      className="bg-black h-full w-full"
+      className="bg-black w-full h-[220px] sm:h-full"
     >
       {images.map((img, i) => (
         <SwiperSlide key={img.src} className="w-full h-full">

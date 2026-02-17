@@ -13,8 +13,8 @@ export default function Footer() {
   return (
     <footer>
       <div className="pt-10 bg-cover bg-auto bg-center bg-[url('/footer.avif')]">
-        <div className="mx-auto w-[90%] max-w-4xl bg-black/85 py-5 rounded-md">
-          <div className="flex flex-col md:flex-row justify-center gap-20 text-sm text-white">
+        <div className="mx-auto w-full max-w-3xl sm:max-w-4xl px-4 sm:px-6 bg-black/85 py-5 rounded-md">
+          <div className="flex flex-col sm:flex-row justify-center gap-8 sm:gap-20 text-sm text-white">
             <div className="text-center">
               <h3 className="font-semibold">
                 {locale === 'en' ? 'Contact Us' : 'Свържете се с нас'}

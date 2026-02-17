@@ -35,7 +35,7 @@ export default function LanguageChange() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button className="capitalize rounded-none h-12" variant="bordered">
+        <Button className="capitalize rounded-none h-12 px-3 sm:px-4" variant="bordered">
           {selectedValue}
         </Button>
       </DropdownTrigger>

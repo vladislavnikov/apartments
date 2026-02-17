@@ -44,7 +44,7 @@ export default function TopNav() {
   )
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#F0FFFF]">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#F0FFFF] px-4 sm:px-6">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -52,7 +52,7 @@ export default function TopNav() {
         />
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-0 text-black" justify="center">
+      <NavbarContent className="hidden sm:flex gap-0 sm:gap-4 md:gap-8 text-black" justify="center">
         {menuItems.map((item, index) => (
           <div key={item.href} className="flex items-center">
             <NavbarItem>

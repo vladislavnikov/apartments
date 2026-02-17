@@ -12,7 +12,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
   const imgs = useMemo(() => (images ?? []).filter((x) => !!x?.url), [images])
   const [active, setActive] = useState(0)
 
-  // modal state
   const [open, setOpen] = useState(false)
   const safe = Math.min(active, Math.max(imgs.length - 1, 0))
   const hasMany = imgs.length > 1
@@ -20,7 +19,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
   const prev = () => setActive((p) => (p - 1 + imgs.length) % imgs.length)
   const next = () => setActive((p) => (p + 1) % imgs.length)
 
-  // close on ESC + support keyboard arrows in modal
   useEffect(() => {
     if (!open) return
 
@@ -32,7 +30,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
     }
 
     document.addEventListener('keydown', onKey)
-    // stop page scroll while modal open
     document.body.style.overflow = 'hidden'
 
     return () => {
@@ -51,7 +48,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
 
   return (
     <>
-      {/* --- Inline carousel (on the page) --- */}
       <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
         <button
           type="button"
@@ -62,11 +58,31 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
           <img
             src={imgs[safe].url}
             alt={imgs[safe].alt || title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain object-center"
             loading="lazy"
             draggable={false}
           />
         </button>
+
+        {hasMany && (
+          <div className="absolute z-10 left-1/2 -translate-x-1/2 bottom-3 flex gap-2">
+            {imgs.map((img, idx) => (
+              <button
+                key={img.id ?? idx}
+                type="button"
+                aria-label={`Slide ${idx + 1}`}
+                aria-current={idx === safe}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActive(idx)
+                }}
+                className={`h-2.5 w-2.5 rounded-full transition-all ${
+                  idx === safe ? 'bg-white' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
         {hasMany && (
           <>
@@ -126,6 +142,8 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
           </>
         )}
       </div>
+
+      {/* --- Modal (unchanged design) --- */}
       {open && (
         <div
           className="fixed inset-0 z-[999] bg-black/50"
@@ -147,8 +165,10 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
               >
                 ✕
               </button>
+
               <div className="relative h-[78%] flex flex-col items-center justify-center gap-4">
                 <h2 className="text-xl font-semibold text-gray-900 text-center px-4">{title}</h2>
+
                 <img
                   src={imgs[safe].url}
                   alt={imgs[safe].alt || title}
@@ -178,6 +198,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                   </>
                 )}
               </div>
+
               {hasMany && (
                 <div className="h-[22%] bg-white backdrop-blur-sm">
                   <div className="h-full flex gap-2 overflow-x-auto px-2 items-center">
@@ -188,8 +209,8 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                           key={img.id ?? idx}
                           type="button"
                           onClick={() => setActive(idx)}
-                          className={`h-full aspect-[4/3] rounded-lg overflow-hidden border transition-all ${
-                            activeThumb ? 'border-white' : 'border-white/0'
+                          className={`h-full aspect-[4/3] rounded-lg overflow-hidden transition-all focus:outline-none ${
+                            activeThumb ? 'ring-2 ring-white' : ''
                           }`}
                           aria-label={`Go to image ${idx + 1}`}
                           aria-current={activeThumb}

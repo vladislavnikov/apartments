@@ -27,18 +27,20 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-1 px-10">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-6">
         <div>
-          <h2 className="text-lg pl-10 pt-8 text-black font-semibold mb-4 ml-9">{heading}</h2>
+          <h2 className="text-lg pt-6 sm:pt-8 text-black font-semibold mb-4 px-4 sm:px-6">
+            {heading}
+          </h2>
 
-          <ul className="space-y-2 pl-9 text-sm text-gray-800 list-disc list-inside">
+          <ul className="space-y-2 px-4 sm:px-6 text-sm text-gray-800 list-disc list-inside">
             {points.map((point, index) => (
               <li key={index}>{point}</li>
             ))}
           </ul>
         </div>
 
-        <div className="w-full h-[300px] md:h-[350px] overflow-hidden border">
+        <div className="w-full h-[200px] sm:h-[300px] md:h-[350px] overflow-hidden border">
           <iframe
             title="Apartments by the River"
             src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"
