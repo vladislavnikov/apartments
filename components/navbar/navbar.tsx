@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import {
   Navbar,
   NavbarContent,
@@ -11,13 +11,19 @@ import {
   Divider,
 } from '@heroui/react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import LanguageChanger from './dropdown'
 
 type Locale = 'en' | 'bg'
 
 export default function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
 
   const params = useParams<{ locale?: string }>()
   const locale: Locale = params?.locale === 'bg' ? 'bg' : 'en'
@@ -44,7 +50,11 @@ export default function TopNav() {
   )
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#F0FFFF] px-4 sm:px-6">
+    <Navbar 
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen} 
+      className="bg-[#F0FFFF] px-3 sm:px-4 md:px-6"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -52,15 +62,15 @@ export default function TopNav() {
         />
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-0 sm:gap-4 md:gap-8 text-black" justify="center">
+      <NavbarContent className="hidden sm:flex gap-0 sm:gap-3 md:gap-6 lg:gap-8 text-black text-sm sm:text-base" justify="center">
         {menuItems.map((item, index) => (
           <div key={item.href} className="flex items-center">
             <NavbarItem>
-              <Link href={item.href}>{item.label}</Link>
+              <Link href={item.href} className="whitespace-nowrap">{item.label}</Link>
             </NavbarItem>
 
             {index !== menuItems.length - 1 && (
-              <Divider orientation="vertical" className="h-5 mx-4 border-black" />
+              <Divider orientation="vertical" className="h-5 mx-2 sm:mx-3 md:mx-4 border-black" />
             )}
           </div>
         ))}
@@ -73,11 +83,15 @@ export default function TopNav() {
       </NavbarContent>
 
       <NavbarMenu
-        className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden bg-[#F0FFFF] text-black`}
+        className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden bg-[#F0FFFF] text-black py-4`}
       >
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={index}>
-            <Link className="w-full" href={item.href} onClick={() => setIsMenuOpen(false)}>
+          <NavbarMenuItem key={index} className="py-2">
+            <Link 
+              className="w-full block py-2 px-4 text-base hover:bg-[#E0EEEE] transition-colors" 
+              href={item.href} 
+              onClick={() => setIsMenuOpen(false)}
+            >
               {item.label}
             </Link>
           </NavbarMenuItem>

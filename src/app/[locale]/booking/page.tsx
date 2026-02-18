@@ -1,8 +1,18 @@
+import { getApartments } from '@/app/api/apartments'
+import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
+
 type Locale = 'en' | 'bg'
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? 'bg' : 'en'
+
+  // Fetch all apartment images
+  const apartments = await getApartments(loc)
+  const allImages =
+    apartments?.sections
+      ?.flatMap((section) => section.images ?? [])
+      .filter((img) => img?.url) ?? []
 
   const content =
     loc === 'en'
@@ -34,29 +44,27 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
         }
 
   return (
-    <section className="w-full">
-      <div className="bg-white size-full">
+    <section className="w-full min-h-screen flex flex-col">
+      <div className="bg-white flex-grow flex flex-col">
         <div className="w-full bg-white">
-          <div className="max-w-3xl mx-auto px-4 text-center py-4">
-            <h2 className="text-xl font-semibold text-black">{content.title}</h2>
+          <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 text-center py-3 sm:py-4 md:py-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-black">{content.title}</h2>
           </div>
         </div>
         <div className="w-full bg-gray-100">
-          <div className="max-w-3xl mx-auto px-4 text-center py-6">
-            <p
-              className="
-              inline-block
-              max-w-md
-              text-base
-              leading-relaxed
-              text-gray-900
-              text-center
-            "
-            >
+          <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 text-center py-4 sm:py-5 md:py-6">
+            <p className="inline-block max-w-md text-sm sm:text-base md:text-lg leading-relaxed text-gray-900 text-center">
               {content.text}
             </p>
           </div>
         </div>
+        
+        {/* Rotating Images Carousel */}
+        {allImages.length > 0 && (
+          <div className="w-full">
+            <HorizontalImageCarousel images={allImages} />
+          </div>
+        )}
       </div>
     </section>
   )

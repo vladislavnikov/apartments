@@ -46,14 +46,20 @@ html {
 
   background: rgb(0, 0, 0);
   -webkit-font-smoothing: antialiased;
+
+  @media (max-width: 640px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 html,
 body,
 #app {
   background-color: white;
-  min-width: 500px;
   height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -67,6 +73,11 @@ body {
   @media (max-width: 1024px) {
     font-size: 15px;
     line-height: 24px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 14px;
+    line-height: 22px;
   }
 }
 
@@ -123,6 +134,42 @@ a {
 
 svg {
   vertical-align: middle;
+}
+
+/* Custom scrollbar for thumbnail strip */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+/* Continuous scrolling animation for image carousel */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
 
 .home {

@@ -36,10 +36,10 @@ export default async function LocaleLayout({
   if (!LOCALES.includes(locale as Locale)) notFound()
 
   return (
-    <html lang={locale}>
-      <body className="flex flex-col h-screen">
+    <html lang={locale} className="h-full">
+      <body className="w-full h-full overflow-x-hidden flex flex-col">
         <TopNav />
-        <main className="flex flex-grow">{children}</main>
+        <main className="w-full flex-grow flex flex-col">{children}</main>
         <Footer />
       </body>
     </html>

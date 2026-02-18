@@ -53,30 +53,20 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="w-full h-full"
+          className="w-full h-full cursor-pointer"
           aria-label="Open gallery"
         >
           <img
             src={imgs[safe].url}
             alt={imgs[safe].alt || title}
-            className="w-full h-full object-contain object-center"
+            className="w-full h-full object-cover"
             loading="lazy"
             draggable={false}
           />
-          <div className="relative w-full flex-1 flex items-center justify-center">
-            <Image
-              src={imgs[safe].url}
-              alt={imgs[safe].alt || title}
-              fill
-              className="object-contain select-none"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 800px"
-              draggable={false}
-            />
-          </div>
         </button>
 
         {hasMany && (
-          <div className="absolute z-10 left-1/2 -translate-x-1/2 bottom-3 flex gap-2">
+          <div className="absolute z-10 left-1/2 -translate-x-1/2 bottom-2 sm:bottom-3 flex gap-1.5 sm:gap-2">
             {imgs.map((img, idx) => (
               <button
                 key={img.id ?? idx}
@@ -87,7 +77,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                   e.stopPropagation()
                   setActive(idx)
                 }}
-                className={`h-2.5 w-2.5 rounded-full transition-all ${
+                className={`h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full transition-all ${
                   idx === safe ? 'bg-white' : 'bg-white/40'
                 }`}
               />
@@ -104,16 +94,16 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 e.stopPropagation()
                 prev()
               }}
-              className="absolute z-10 left-2 top-1/2 -translate-y-1/2"
+              className="absolute z-10 left-1 sm:left-2 top-1/2 -translate-y-1/2"
             >
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
+              <span className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2.5}
                   stroke="currentColor"
-                  className="w-4 h-4 text-white pr-0.5"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white pr-0.5"
                 >
                   <path
                     strokeLinecap="round"
@@ -131,16 +121,16 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 e.stopPropagation()
                 next()
               }}
-              className="absolute z-10 right-2 top-1/2 -translate-y-1/2"
+              className="absolute z-10 right-1 sm:right-2 top-1/2 -translate-y-1/2"
             >
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
+              <span className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2.5}
                   stroke="currentColor"
-                  className="w-4 h-4 text-white pl-0.5"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white pl-0.5"
                 >
                   <path
                     strokeLinecap="round"
@@ -154,100 +144,145 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
         )}
       </div>
 
-      {/* --- Modal (unchanged design) --- */}
+      {/* --- Modal (light theme) --- */}
       {open && (
         <div
-          className="fixed inset-0 z-[999] bg-black/50"
+          className="fixed inset-0 z-[999] bg-black/40 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label={`${title} gallery`}
           onClick={() => setOpen(false)}
         >
           <div
-            className="mx-auto w-full max-w-4xl h-[75vh] mt-[10vh] px-4"
+            className="mx-auto w-full max-w-6xl h-[90vh] sm:h-[85vh] mt-[5vh] px-3 sm:px-4 md:px-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative h-full rounded-xl overflow-hidden bg-white shadow-2xl">
+            <div className="relative h-full rounded-xl overflow-hidden bg-white shadow-2xl flex flex-col">
+              {/* Close button */}
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="absolute right-3 top-3 z-20 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                className="absolute right-3 top-3 z-30 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all"
                 aria-label="Close"
               >
-                ✕
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
 
-              <div className="relative h-[78%] flex flex-col items-center justify-center gap-4">
-                <h2 className="text-xl font-semibold text-gray-900 text-center px-4">{title}</h2>
+              {/* Title */}
+              <div className="px-4 py-3 sm:py-4 border-b border-gray-200">
+                <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 text-center">
+                  {title}
+                </h2>
+              </div>
 
-                <img
-                  src={imgs[safe].url}
-                  alt={imgs[safe].alt || title}
-                  className="max-h-[85%] max-w-full object-contain select-none"
-                  draggable={false}
-                />
-                <div className="relative w-full flex-1 flex items-center justify-center">
-                  <Image
+              {/* Main image area */}
+              <div className="relative flex-1 flex items-center justify-center bg-gray-50 p-4 sm:p-6 md:p-8 min-h-0">
+                <div className="w-full h-full flex items-center justify-center">
+                  <img
                     src={imgs[safe].url}
                     alt={imgs[safe].alt || title}
-                    fill
-                    className="object-contain select-none"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 800px"
+                    className="max-w-full max-h-full w-auto h-auto object-contain select-none"
+                    style={{ 
+                      width: 'auto',
+                      height: 'auto',
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      objectFit: 'contain'
+                    }}
                     draggable={false}
+                    loading="eager"
                   />
                 </div>
 
+                {/* Navigation arrows */}
                 {hasMany && (
                   <>
                     <button
                       type="button"
                       aria-label="Previous"
                       onClick={prev}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/45 hover:bg-black/65 text-white flex items-center justify-center"
+                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg border border-gray-200 text-gray-700 flex items-center justify-center transition-all hover:scale-110"
                     >
-                      ‹
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={3}
+                        stroke="currentColor"
+                        className="w-5 h-5 sm:w-6 sm:h-6"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                      </svg>
                     </button>
 
                     <button
                       type="button"
                       aria-label="Next"
                       onClick={next}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/45 hover:bg-black/65 text-white flex items-center justify-center"
+                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg border border-gray-200 text-gray-700 flex items-center justify-center transition-all hover:scale-110"
                     >
-                      ›
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={3}
+                        stroke="currentColor"
+                        className="w-5 h-5 sm:w-6 sm:h-6"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
                     </button>
                   </>
                 )}
+
+                {/* Image counter */}
+                {hasMany && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm shadow-md border border-gray-200 text-gray-700 text-sm font-medium">
+                    {safe + 1} / {imgs.length}
+                  </div>
+                )}
               </div>
 
+              {/* Thumbnail strip */}
               {hasMany && (
-                <div className="h-[22%] bg-white backdrop-blur-sm">
-                  <div className="h-full flex gap-2 overflow-x-auto px-2 items-center">
-                    {imgs.map((img, idx) => {
-                      const activeThumb = idx === safe
-                      return (
-                        <button
-                          key={img.id ?? idx}
-                          type="button"
-                          onClick={() => setActive(idx)}
-                          className={`h-full aspect-[4/3] rounded-lg overflow-hidden transition-all focus:outline-none ${
-                            activeThumb ? 'ring-2 ring-white' : ''
-                          }`}
-                          aria-label={`Go to image ${idx + 1}`}
-                          aria-current={activeThumb}
-                          title={`Image ${idx + 1}`}
-                        >
-                          <img
-                            src={img.url}
-                            alt={img.alt || title}
-                            className={`h-full w-full object-cover transition-opacity ${
-                              activeThumb ? 'opacity-100' : 'opacity-40 hover:opacity-70'
+                <div className="border-t border-gray-200 bg-gray-50">
+                  <div className="h-24 sm:h-28 md:h-32 px-3 sm:px-4 py-3 sm:py-4">
+                    <div className="h-full flex gap-2 sm:gap-3 overflow-x-auto overflow-y-hidden items-center scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                      {imgs.map((img, idx) => {
+                        const activeThumb = idx === safe
+                        return (
+                          <button
+                            key={img.id ?? idx}
+                            type="button"
+                            onClick={() => setActive(idx)}
+                            className={`flex-shrink-0 h-full aspect-[4/3] rounded-lg overflow-hidden transition-all focus:outline-none border-2 ${
+                              activeThumb
+                                ? 'border-gray-900 ring-2 ring-gray-400 scale-105 shadow-md'
+                                : 'border-gray-300 hover:border-gray-500 opacity-70 hover:opacity-100'
                             }`}
-                            draggable={false}
-                          />
-                        </button>
-                      )
-                    })}
+                            aria-label={`Go to image ${idx + 1}`}
+                            aria-current={activeThumb}
+                            title={`Image ${idx + 1}`}
+                          >
+                            <img
+                              src={img.url}
+                              alt={img.alt || title}
+                              className="w-full h-full object-cover"
+                              draggable={false}
+                            />
+                          </button>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
               )}
