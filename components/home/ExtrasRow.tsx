@@ -1,15 +1,17 @@
 'use client'
+
 import React from 'react'
 import Image from 'next/image'
+import { Locale } from '@/app/api/apartments'
 
 type Extra = {
   label: string
   imgSrc: string
 }
 
-export default function ExtrasRow({ selectedLanguage }: { selectedLanguage: string }) {
+export default function ExtrasRow({ locale }: { locale: Locale }) {
   const extras: Extra[] =
-    selectedLanguage === 'en'
+    locale === 'en'
       ? [
           { label: 'Free Wi-Fi', imgSrc: '/icons/wifi.png' },
           { label: 'Fully Equipped Kitchen', imgSrc: '/icons/kitchen.png' },
@@ -24,18 +26,20 @@ export default function ExtrasRow({ selectedLanguage }: { selectedLanguage: stri
         ]
 
   return (
-    <div className="bg-white py-5">
-      <div className="max-w-4xl mx-auto px-10 grid grid-cols-1 md:grid-cols-4 gap-1 text-center">
+    <div className="bg-white py-4 sm:py-5 md:py-6">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto px-3 sm:px-4 md:px-6 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center">
         {extras.map((extra, index) => (
           <div key={index} className="flex flex-col items-center gap-0">
             <Image
               src={extra.imgSrc}
               alt={extra.label}
-              width={25}
-              height={25}
-              className="opacity-90 contrast-100 brightness-50"
+              width={28}
+              height={28}
+              className="opacity-90 contrast-100 brightness-50 mb-2 sm:mb-3 w-7 h-7 sm:w-8 sm:h-8"
             />
-            <p className="text-sm text-gray-700 leading-tight max-w-[140px]">{extra.label}</p>
+            <span className="text-xs sm:text-sm md:text-base text-gray-700 leading-tight sm:leading-snug max-w-[120px] sm:max-w-[140px] px-1">
+              {extra.label}
+            </span>
           </div>
         ))}
       </div>

@@ -1,13 +1,13 @@
 'use client'
-import React, { useEffect } from 'react'
 
-export default function WhyChooseUs({ language }: { language: string }) {
-  useEffect(() => {}, [language])
+import { Locale } from '@/app/api/apartments'
+import React from 'react'
 
-  const heading = language === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
+export default function WhyChooseUs({ locale }: { locale: Locale }) {
+  const heading = locale === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
 
   const points =
-    language === 'en'
+    locale === 'en'
       ? [
           'Prime location near the city center',
           'Easy access to public transportation',
@@ -26,18 +26,23 @@ export default function WhyChooseUs({ language }: { language: string }) {
         ]
 
   return (
-    <section className="bg-white py-0">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-1 px-4">
-        <div>
-          <h2 className="text-lg pl-10 pt-8 text-black font-semibold mb-4">{heading}</h2>
+    <section className="bg-white">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-6 px-4 sm:px-6">
+        <div className="order-2 md:order-1">
+          <h2 className="text-base sm:text-lg md:text-xl pt-4 sm:pt-6 md:pt-8 text-black font-semibold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6">
+            {heading}
+          </h2>
 
-          <ul className="space-y-2 pl-9 text-sm text-gray-800 list-disc list-inside">
+          <ul className="space-y-1.5 sm:space-y-2 px-2 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base text-gray-800 list-disc list-inside">
             {points.map((point, index) => (
-              <li key={index}>{point}</li>
+              <li key={index} className="leading-relaxed">
+                {point}
+              </li>
             ))}
           </ul>
         </div>
-        <div className="w-full h-[300px] md:h-[350px] rounded-md overflow-hidden border">
+
+        <div className="w-full h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden border order-1 md:order-2">
           <iframe
             title="Apartments by the River"
             src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"

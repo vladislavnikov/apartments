@@ -1,62 +1,36 @@
-import React, { useState, useEffect, useRef } from 'react'
-import gsap from 'gsap'
+'use client'
 
-interface HorizontalCarouselProps {
-  images: { src: string; alt: string; text: string }[]
-}
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const carouselRef = useRef(null)
+type Props = { images: { src: string; alt?: string }[] }
 
-  // GSAP animation for auto sliding
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
-    }, 3000) // Change every 3 seconds
-
-    return () => clearInterval(interval) // Clean up on component unmount
-  }, [images.length])
-
-  useEffect(() => {
-    // GSAP animation to smoothly scroll to the next image
-    if (carouselRef.current) {
-      gsap.to(carouselRef.current, {
-        duration: 1,
-        x: `-${currentIndex * 100}%`, // Scroll horizontally
-        ease: 'power2.inOut',
-      })
-    }
-  }, [currentIndex])
-
+export default function VerticalImageCarousel({ images }: Props) {
   return (
-    <div className="relative overflow-hidden bg-[#50d71e]">
-      <div
-        ref={carouselRef}
-        className="flex transition-transform duration-1000 ease-in-out"
-        style={{
-          width: `${images.length * 100}%`,
-        }}
-      >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="relative w-full h-96"
-            style={{
-              backgroundImage: `url(${image.src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-black opacity-40"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl font-bold">
-              {image.text}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Swiper
+      direction="vertical"
+      slidesPerView={1}
+      loop={images.length > 1}
+      speed={800}
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+      mousewheel={{ forceToAxis: true }}
+      keyboard={{ enabled: true }}
+      modules={[Pagination, Mousewheel, Keyboard, Autoplay]}
+      className="bg-black w-full h-[250px] sm:h-[300px] md:h-full"
+    >
+      {images.map((img, i) => (
+        <SwiperSlide key={img.src} className="w-full h-full">
+          <img
+            src={img.src}
+            alt={img.alt ?? `Slide ${i + 1}`}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   )
 }
-
-export default HorizontalCarousel

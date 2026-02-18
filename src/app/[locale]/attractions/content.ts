@@ -1,26 +1,19 @@
 export const placesEn = [
   {
     title: 'Old Town of Plovdiv',
-    text: `The Old Town of Plovdiv is a beautifully preserved historic area where
-    cobblestone streets, colorful Revival-era houses, and quiet courtyards
-    create a timeless atmosphere. This district is home to small museums,
-    art galleries, and traditional cafés, offering visitors a deeper look
-    into the city’s cultural and architectural heritage.`,
+    text: `The Old Town of Plovdiv is a beautifully preserved historic area where cobblestone streets, colorful Revival-era houses, and quiet courtyards create a timeless atmosphere. This district is home to small museums, art galleries, and traditional cafés, offering visitors a deeper look into the city’s cultural and architectural heritage. Walking through the Old Town feels like stepping back in time, while scenic viewpoints reveal stunning panoramas over modern Plovdiv.`,
     image: '/images/attractions/oldTown.avif',
     reverse: false,
   },
   {
     title: 'Ancient Theatre',
-    text: `The Ancient Theatre is one of the best-preserved Roman theatres in the
-    world and a defining landmark of Plovdiv. Built in the 1st century AD,
-    the theatre still hosts concerts and performances, blending ancient
-    history with modern cultural life.`,
+    text: `The Ancient Theatre is one of the best-preserved Roman theatres in the world and a defining landmark of Plovdiv. Built in the 1st century AD, the theatre still hosts concerts and performances, blending ancient history with modern cultural life. Its elevated location provides breathtaking views over the city, making it a must-see attraction for history lovers and photographers alike.`,
     image: '/images/attractions/theatre.avif',
     reverse: true,
   },
   {
     title: 'Ancient Stadium',
-    text: `Hidden beneath Plovdiv’s main pedestrian street, the Ancient Stadium reveals the city’s Roman past in an unexpected way. Once used for athletic competitions and public events, parts of the stadium remain visible today, seamlessly integrated into the modern urban environment. This unique blend of ancient ruins and contemporary city life highlights Plovdiv’s continuous history spanning thousands of years`,
+    text: `Hidden beneath Plovdiv’s main pedestrian street, the Ancient Stadium reveals the city’s Roman past in an unexpected way. Once used for athletic competitions and public events, parts of the stadium remain visible today, seamlessly integrated into the modern urban environment. This unique blend of ancient ruins and contemporary city life highlights Plovdiv’s continuous history spanning thousands of years.`,
     image: '/images/attractions/stadium.avif',
     reverse: false,
   },
