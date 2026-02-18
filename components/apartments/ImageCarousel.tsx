@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
 
 type Img = {
   id: number
@@ -62,6 +63,16 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
             loading="lazy"
             draggable={false}
           />
+          <div className="relative w-full flex-1 flex items-center justify-center">
+            <Image
+              src={imgs[safe].url}
+              alt={imgs[safe].alt || title}
+              fill
+              className="object-contain select-none"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 800px"
+              draggable={false}
+            />
+          </div>
         </button>
 
         {hasMany && (
@@ -175,6 +186,16 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                   className="max-h-[85%] max-w-full object-contain select-none"
                   draggable={false}
                 />
+                <div className="relative w-full flex-1 flex items-center justify-center">
+                  <Image
+                    src={imgs[safe].url}
+                    alt={imgs[safe].alt || title}
+                    fill
+                    className="object-contain select-none"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 800px"
+                    draggable={false}
+                  />
+                </div>
 
                 {hasMany && (
                   <>

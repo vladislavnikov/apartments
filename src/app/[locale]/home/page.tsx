@@ -53,8 +53,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <div className="w-full">
       <div className="relative w-full overflow-hidden aspect-[21/9] md:aspect-[24/9] max-h-[500px]">
         <VerticalImageCarousel images={images} />
-        <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
-          <div className="w-full max-w-2xl bg-white/50 px-3 py-8 md:px-12 md:py-10 text-center">
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-2">
+          <div className="w-full max-w-2xl bg-white/65 px-3 py-8 md:px-12 md:py-10 text-center">
             <h1 className="text-4xl md:text-4xl font-serif tracking-wide text-black">
               {main.title}
             </h1>
