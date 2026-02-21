@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import Image from 'next/image'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type Img = {
   id: number
@@ -17,8 +16,21 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
   const safe = Math.min(active, Math.max(imgs.length - 1, 0))
   const hasMany = imgs.length > 1
 
-  const prev = () => setActive((p) => (p - 1 + imgs.length) % imgs.length)
-  const next = () => setActive((p) => (p + 1) % imgs.length)
+  const prev = useCallback(() => {
+    setActive((p) => {
+      const n = imgs.length
+      if (n <= 1) return 0
+      return (p - 1 + n) % n
+    })
+  }, [imgs.length])
+
+  const next = useCallback(() => {
+    setActive((p) => {
+      const n = imgs.length
+      if (n <= 1) return 0
+      return (p + 1) % n
+    })
+  }, [imgs.length])
 
   useEffect(() => {
     if (!open) return
@@ -37,7 +49,28 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [open, hasMany, imgs.length])
+  }, [open, hasMany, prev, next])
+
+  const thumbs = useMemo(() => imgs.map((img, idx) => ({ img, idx })), [imgs])
+
+  const rotatedThumbs = useMemo(() => {
+    const n = thumbs.length
+    if (!n) return []
+    const center = Math.floor(n / 2)
+    const start = (safe - center + n) % n // ensures rotated[center].idx === safe
+    return Array.from({ length: n }, (_, i) => thumbs[(start + i) % n])
+  }, [thumbs, safe])
+
+  const activeThumbRef = useRef<HTMLButtonElement | null>(null)
+
+  useEffect(() => {
+    if (!open || !hasMany) return
+    activeThumbRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  }, [open, safe, hasMany])
 
   if (!imgs.length) {
     return (
@@ -59,7 +92,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
           <img
             src={imgs[safe].url}
             alt={imgs[safe].alt || title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-105 md:scale-150"
             loading="lazy"
             draggable={false}
           />
@@ -144,7 +177,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
         )}
       </div>
 
-      {/* --- Modal (light theme) --- */}
       {open && (
         <div
           className="fixed inset-0 z-[999] bg-black/40 backdrop-blur-sm"
@@ -158,7 +190,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative h-full rounded-xl overflow-hidden bg-white shadow-2xl flex flex-col">
-              {/* Close button */}
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -177,7 +208,6 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 </svg>
               </button>
 
-              {/* Title */}
               <div className="px-4 py-3 sm:py-4 border-b border-gray-200">
                 <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 text-center">
                   {title}
@@ -191,12 +221,12 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                     src={imgs[safe].url}
                     alt={imgs[safe].alt || title}
                     className="max-w-full max-h-full w-auto h-auto object-contain select-none"
-                    style={{ 
+                    style={{
                       width: 'auto',
                       height: 'auto',
                       maxWidth: '100%',
                       maxHeight: '100%',
-                      objectFit: 'contain'
+                      objectFit: 'contain',
                     }}
                     draggable={false}
                     loading="eager"
@@ -220,7 +250,11 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                         stroke="currentColor"
                         className="w-5 h-5 sm:w-6 sm:h-6"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 19.5L8.25 12l7.5-7.5"
+                        />
                       </svg>
                     </button>
 
@@ -238,7 +272,11 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                         stroke="currentColor"
                         className="w-5 h-5 sm:w-6 sm:h-6"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
                       </svg>
                     </button>
                   </>
@@ -252,23 +290,38 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 )}
               </div>
 
-              {/* Thumbnail strip */}
+              {/* Thumbnail strip (enhanced) */}
               {hasMany && (
                 <div className="border-t border-gray-200 bg-gray-50">
-                  <div className="h-24 sm:h-28 md:h-32 px-3 sm:px-4 py-3 sm:py-4">
-                    <div className="h-full flex gap-2 sm:gap-3 overflow-x-auto overflow-y-hidden items-center scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                      {imgs.map((img, idx) => {
+                  <div className="h-24 sm:h-28 md:h-32 px-2 sm:px-2 py-1 sm:py-1 overflow-visible flex items-center justify-center w-full">
+                    <div
+                      className={[
+                        'h-full flex gap-2 sm:gap-3 items-center',
+                        'overflow-x-auto overflow-y-visible',
+                        'scroll-smooth snap-x snap-mandatory',
+                        'py-2 w-fit',
+                        '[scrollbar-width:none]',
+                        '[-ms-overflow-style:none]',
+                        '[&::-webkit-scrollbar]:hidden',
+                      ].join(' ')}
+                    >
+                      {rotatedThumbs.map(({ img, idx }, renderIdx) => {
                         const activeThumb = idx === safe
+
                         return (
                           <button
-                            key={img.id ?? idx}
+                            key={`${img.id}-${idx}-${renderIdx}`}
+                            ref={activeThumb ? activeThumbRef : null}
                             type="button"
                             onClick={() => setActive(idx)}
-                            className={`flex-shrink-0 h-full aspect-[4/3] rounded-lg overflow-hidden transition-all focus:outline-none border-2 ${
+                            className={[
+                              'flex-shrink-0 h-full aspect-[4/3]',
+                              'rounded-lg border-2 overflow-hidden transition-all focus:outline-none',
+                              'snap-center',
                               activeThumb
-                                ? 'border-gray-900 ring-2 ring-gray-400 scale-105 shadow-md'
-                                : 'border-gray-300 hover:border-gray-500 opacity-70 hover:opacity-100'
-                            }`}
+                                ? 'border-gray-900 ring-2 ring-gray-400 shadow-md scale-[1.03]'
+                                : 'border-gray-300 hover:border-gray-500 opacity-70 hover:opacity-100',
+                            ].join(' ')}
                             aria-label={`Go to image ${idx + 1}`}
                             aria-current={activeThumb}
                             title={`Image ${idx + 1}`}
@@ -276,7 +329,10 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                             <img
                               src={img.url}
                               alt={img.alt || title}
-                              className="w-full h-full object-cover"
+                              className={[
+                                'w-full h-full object-cover transition-transform',
+                                activeThumb ? 'scale-105' : 'hover:scale-105',
+                              ].join(' ')}
                               draggable={false}
                             />
                           </button>

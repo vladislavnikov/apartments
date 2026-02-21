@@ -12,8 +12,8 @@ export default function Footer() {
 
   return (
     <footer>
-      <div className="pt-6 sm:pt-8 md:pt-10 bg-cover bg-auto bg-center bg-[url('/footer.avif')]">
-        <div className="mx-auto w-full max-w-3xl sm:max-w-4xl px-3 sm:px-4 md:px-6 bg-black/85 py-4 sm:py-5 md:py-6 rounded-md">
+      <div className="pt-6 sm:pt-8 md:pt-10 bg-no-repeat bg-cover bg-center bg-[url('/footer.jpg')]">
+        <div className="mx-auto w-[92%] max-w-2xl sm:max-w-3xl md:max-w-4xl px-4 sm:px-8 md:px-12 bg-black/85 py-6 rounded-t-lg">
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 md:gap-20 text-xs sm:text-sm text-white">
             <div className="text-center">
               <h3 className="font-semibold text-sm sm:text-base mb-2 sm:mb-3">
@@ -27,9 +27,13 @@ export default function Footer() {
             </div>
 
             <div className="text-center">
-              <h3 className="font-semibold text-sm sm:text-base mb-2 sm:mb-3">{locale === 'en' ? 'Address' : 'Адрес'}</h3>
+              <h3 className="font-semibold text-sm sm:text-base mb-2 sm:mb-3">
+                {locale === 'en' ? 'Address' : 'Адрес'}
+              </h3>
               <p>{locale === 'en' ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}</p>
-              <p className="text-xs sm:text-sm">{locale === 'en' ? 'Plovdiv, 4000' : 'Пловдив, 4000'}</p>
+              <p className="text-xs sm:text-sm">
+                {locale === 'en' ? 'Plovdiv, 4000' : 'Пловдив, 4000'}
+              </p>
               <p className="text-xs sm:text-sm">{locale === 'en' ? 'Bulgaria' : 'България'}</p>
             </div>
           </div>

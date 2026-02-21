@@ -11,7 +11,7 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white w-full">
-      <h2 className="text-2xl font-medium text-center py-4 text-black">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-center py-3 sm:py-4 text-black">
         {locale === 'bg' ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
       </h2>
 

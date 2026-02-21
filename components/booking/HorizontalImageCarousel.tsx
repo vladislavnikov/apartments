@@ -13,8 +13,8 @@ export default function HorizontalImageCarousel({ images }: Props) {
   const duplicatedImages = [...images, ...images]
 
   return (
-    <div className="w-full pt-3 sm:pt-4 md:pt-6 pb-3 sm:pb-4 md:pb-6 bg-white">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 [&_.swiper]:!pb-0">
+    <div className="w-full py-3 sm:py-4 md:py-6 bg-white overflow-hidden">
+      <div className="w-full [&_.swiper]:!pb-0">
         <Swiper
           slidesPerView="auto"
           spaceBetween={16}
@@ -42,7 +42,10 @@ export default function HorizontalImageCarousel({ images }: Props) {
           style={{ paddingBottom: 0, marginBottom: 0 }}
         >
           {duplicatedImages.map((img, i) => (
-            <SwiperSlide key={`${img.url}-${i}`} className="!w-[calc(50%-8px)] sm:!w-[calc(50%-12px)] md:!w-[calc(33.333%-10.67px)]">
+            <SwiperSlide
+              key={`${img.url}-${i}`}
+              className="!w-[calc(50%-8px)] sm:!w-[calc(50%-12px)] md:!w-[calc(33.333%-10.67px)]"
+            >
               <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
                 <img
                   src={img.url}

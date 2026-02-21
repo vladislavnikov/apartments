@@ -26,7 +26,7 @@ export default function ExtrasRow({ locale }: { locale: Locale }) {
         ]
 
   return (
-    <div className="bg-white py-4 sm:py-5 md:py-6">
+    <div className="bg-white py-3 sm:py-3 md:py-4">
       <div className="max-w-3xl sm:max-w-4xl mx-auto px-3 sm:px-4 md:px-6 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center">
         {extras.map((extra, index) => (
           <div key={index} className="flex flex-col items-center gap-0">

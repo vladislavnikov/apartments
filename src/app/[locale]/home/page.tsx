@@ -1,5 +1,5 @@
 import ExtrasRow from 'components/home/ExtrasRow'
-import VerticalImageCarousel from 'components/home/VerticalCarousel'
+import VerticalImageCarousel from 'components/home/verticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
 
 type Locale = 'en' | 'bg'
@@ -54,7 +54,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <div className="relative w-full overflow-hidden aspect-[16/9] sm:aspect-[21/9] md:aspect-[24/9] max-h-[400px] sm:max-h-[450px] md:max-h-[500px]">
         <VerticalImageCarousel images={images} />
         <div className="absolute inset-0 z-10 flex items-center justify-center px-3 sm:px-4 md:px-6">
-          <div className="w-full max-w-2xl bg-white/70 sm:bg-white/65 px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center">
+          <div className="w-full max-w-2xl bg-white/70 sm:bg-white/65 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif tracking-wide text-black">
               {main.title}
             </h1>
@@ -68,7 +68,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <ExtrasRow locale={loc} />
 
-      <div className="bg-red-50 py-4 sm:py-6 flex items-center justify-center">
+      <div className="bg-red-50 py-3 sm:py-2 flex items-center justify-center">
         <p className="max-w-4xl text-xs sm:text-sm md:text-base text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
           {welcomeText}
         </p>

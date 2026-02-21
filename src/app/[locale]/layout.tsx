@@ -20,7 +20,9 @@ export async function generateMetadata({
   return {
     title: loc === 'bg' ? 'Апартаменти край реката' : 'Apartments by the River',
     icons: {
-      icon: '/favicon/apartament.png',
+      icon: '/favicon/favicon.ico',
+      shortcut: '/favicon/favicon-16x16.png',
+      apple: '/favicon/favicon.ico',
     },
   }
 }

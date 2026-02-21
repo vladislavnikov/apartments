@@ -27,13 +27,16 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white">
-      <div className="max-w-3xl sm:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-6 px-4 sm:px-6">
-        <div className="order-2 md:order-1">
-          <h2 className="text-base sm:text-lg md:text-xl pt-4 sm:pt-6 md:pt-8 text-black font-semibold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-3">
+        <div className="order-2 md:order-1 pb-4">
+          <h2
+            className="text-base sm:text-lg ml-6 md:text-xl text-black font-semibold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 
+               text-center md:text-left lg:pt-6 md:pt-4 sm:pt-1"
+          >
             {heading}
           </h2>
 
-          <ul className="space-y-1.5 sm:space-y-2 px-2 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base text-gray-800 list-disc list-inside">
+          <ul className="list-disc list-inside text-center md:text-left md:list-outside md:ml-5 space-y-1.5 sm:space-y-2 px-2 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base text-gray-800">
             {points.map((point, index) => (
               <li key={index} className="leading-relaxed">
                 {point}
