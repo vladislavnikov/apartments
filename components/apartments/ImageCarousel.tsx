@@ -57,7 +57,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
     const n = thumbs.length
     if (!n) return []
     const center = Math.floor(n / 2)
-    const start = (safe - center + n) % n // ensures rotated[center].idx === safe
+    const start = (safe - center + n) % n
     return Array.from({ length: n }, (_, i) => thumbs[(start + i) % n])
   }, [thumbs, safe])
 

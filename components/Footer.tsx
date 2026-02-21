@@ -3,8 +3,7 @@
 import React from 'react'
 import { FaFacebookF } from 'react-icons/fa'
 import { useParams } from 'next/navigation'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default function Footer() {
   const params = useParams<{ locale?: string }>()

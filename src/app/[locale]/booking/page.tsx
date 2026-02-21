@@ -1,13 +1,11 @@
 import { getApartments } from '@/app/api/apartments'
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? 'bg' : 'en'
 
-  // Fetch all apartment images
   const apartments = await getApartments(loc)
   const allImages =
     apartments?.sections?.flatMap((section) => section.images ?? []).filter((img) => img?.url) ?? []

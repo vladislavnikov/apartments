@@ -9,7 +9,6 @@ type Props = { images: { url: string; alt?: string | null }[] }
 export default function HorizontalImageCarousel({ images }: Props) {
   if (!images || images.length === 0) return null
 
-  // Duplicate images for seamless infinite scroll
   const duplicatedImages = [...images, ...images]
 
   return (

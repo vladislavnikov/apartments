@@ -1,6 +1,5 @@
 import ExplorePlovdiv from './ExplorePlovdiv'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default async function AttractionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

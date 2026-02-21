@@ -3,8 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { placesBg, placesEn } from './content'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
   const places = locale === 'bg' ? placesBg : placesEn

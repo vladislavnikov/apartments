@@ -1,8 +1,7 @@
 import ExtrasRow from 'components/home/ExtrasRow'
 import VerticalImageCarousel from 'components/home/verticalCarousel'
 import WhyChooseUs from 'components/home/WhyChooseUs'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

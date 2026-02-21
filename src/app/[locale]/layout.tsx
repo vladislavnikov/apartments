@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation'
 import Footer from 'components/Footer'
 import TopNav from 'components/navbar/navbar'
 import { Metadata } from 'next'
-
-const LOCALES = ['en', 'bg'] as const
-type Locale = (typeof LOCALES)[number]
+import { Locale, LOCALES } from '@/shared/enum'
 
 export async function generateMetadata({
   params,

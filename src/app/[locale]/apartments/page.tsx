@@ -1,7 +1,6 @@
 import { getApartments } from '@/app/api/apartments'
 import ImageCarousel from 'components/apartments/ImageCarousel'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 function pickBg(i: number) {
   return i % 2 === 0 ? 'bg-[#b7b07a]' : 'bg-[#bdbdbd]'

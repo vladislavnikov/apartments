@@ -3,7 +3,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { parseApartments } from '../lib/jsonDestructor'
 
-export type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export async function getApartments(locale: Locale) {
   const payload = await getPayload({ config })

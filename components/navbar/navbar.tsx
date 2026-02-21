@@ -13,8 +13,7 @@ import {
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import LanguageChanger from './dropdown'
-
-type Locale = 'en' | 'bg'
+import { Locale } from '@/shared/enum'
 
 export default function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
