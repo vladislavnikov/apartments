@@ -45,7 +45,7 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
           </ul>
         </div>
 
-        <div className="w-full h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden border order-1 md:order-2">
+        <div className="w-full h-full overflow-hidden border order-1 md:order-2">
           <iframe
             title="Apartments by the River"
             src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"

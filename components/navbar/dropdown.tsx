@@ -3,12 +3,13 @@
 import React from 'react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@heroui/react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
+import { Locale } from '@/shared/enum'
 
-function replaceLocale(pathname: string, newLocale: 'en' | 'bg') {
+function replaceLocale(pathname: string, newLocale: Locale.EN | Locale.BG) {
   const parts = pathname.split('/').filter(Boolean)
   if (parts.length === 0) return `/${newLocale}`
 
-  if (parts[0] === 'en' || parts[0] === 'bg') {
+  if (parts[0] === Locale.EN || parts[0] === Locale.BG) {
     parts[0] = newLocale
     return '/' + parts.join('/')
   }
@@ -20,13 +21,13 @@ export default function LanguageChange() {
   const router = useRouter()
   const pathname = usePathname()
   const params = useParams<{ locale?: string }>()
-  const locale = params?.locale === 'bg' ? 'bg' : 'en'
+  const locale = params?.locale === Locale.BG ? Locale.BG : Locale.EN
 
-  const selectedValue = locale === 'en' ? 'English' : 'Български'
+  const selectedValue = locale === Locale.EN ? 'English' : 'Български'
 
   const handleSelectionChange = (keys: any) => {
     const picked = keys.currentKey as string
-    const newLocale: 'en' | 'bg' = picked === 'English' ? 'en' : 'bg'
+    const newLocale: Locale.EN | Locale.BG = picked === 'English' ? Locale.EN : Locale.BG
 
     router.push(replaceLocale(pathname || '/', newLocale))
     router.refresh()

@@ -9,11 +9,10 @@ import { Spinner } from '@heroui/spinner'
 type Props = { images: { url: string; alt?: string | null }[] }
 
 export default function HorizontalImageCarousel({ images }: Props) {
-  if (!images || images.length === 0) return null
-
-  const duplicatedImages = useMemo(() => [...images, ...images], [images])
-
+  const duplicatedImages = useMemo(() => (images ? [...images, ...images] : []), [images])
   const [loaded, setLoaded] = useState<Record<number, boolean>>({})
+
+  if (!images || images.length === 0) return null
 
   return (
     <div className="w-full py-3 sm:py-4 md:py-6 bg-white overflow-hidden">
