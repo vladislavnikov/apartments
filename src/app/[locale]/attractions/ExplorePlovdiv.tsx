@@ -6,12 +6,12 @@ import { placesBg, placesEn } from './content'
 import { Locale } from '@/shared/enum'
 
 export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
-  const places = locale === 'bg' ? placesBg : placesEn
+  const places = locale === Locale.BG ? placesBg : placesEn
 
   return (
     <section className="bg-white w-full">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-center py-3 sm:py-4 text-black">
-        {locale === 'bg' ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
+        {locale === Locale.BG ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
       </h2>
 
       {places.map((place, index) => (

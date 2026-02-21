@@ -1,13 +1,13 @@
 'use client'
 
-import { Locale } from '@/app/api/apartments'
+import { Locale } from '@/shared/enum'
 import React from 'react'
 
 export default function WhyChooseUs({ locale }: { locale: Locale }) {
-  const heading = locale === 'en' ? 'Why Choose Us?' : 'Защо да изберете нас?'
+  const heading = locale == Locale.EN ? 'Why Choose Us?' : 'Защо да изберете нас?'
 
   const points =
-    locale === 'en'
+    locale === Locale.EN
       ? [
           'Prime location near the city center',
           'Easy access to public transportation',

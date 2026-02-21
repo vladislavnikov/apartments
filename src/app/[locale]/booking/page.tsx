@@ -4,7 +4,7 @@ import { Locale } from '@/shared/enum'
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const loc: Locale = locale === 'bg' ? 'bg' : 'en'
+  const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
   const apartments = await getApartments(loc)
   const allImages =

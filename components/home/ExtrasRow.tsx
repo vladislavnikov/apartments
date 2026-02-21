@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Locale } from '@/app/api/apartments'
+import { Locale } from '@/shared/enum'
 
 type Extra = {
   label: string
@@ -11,7 +11,7 @@ type Extra = {
 
 export default function ExtrasRow({ locale }: { locale: Locale }) {
   const extras: Extra[] =
-    locale === 'en'
+    locale === Locale.EN
       ? [
           { label: 'Free Wi-Fi', imgSrc: '/icons/wifi.png' },
           { label: 'Fully Equipped Kitchen', imgSrc: '/icons/kitchen.png' },

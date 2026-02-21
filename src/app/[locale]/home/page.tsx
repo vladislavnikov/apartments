@@ -5,7 +5,7 @@ import { Locale } from '@/shared/enum'
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const loc: Locale = locale === 'bg' ? 'bg' : 'en'
+  const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
   const images = [
     { src: '/images/homePage/1.avif', alt: 'Home 1' },

@@ -13,7 +13,7 @@ import {
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import LanguageChanger from './dropdown'
-import { Locale } from '@/shared/enum'
+import { Locale } from '../../src/shared/enum'
 
 export default function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,7 +24,7 @@ export default function TopNav() {
   }, [pathname])
 
   const params = useParams<{ locale?: string }>()
-  const locale: Locale = params?.locale === 'bg' ? 'bg' : 'en'
+  const locale: Locale = params?.locale === 'bg' ? Locale.BG : Locale.EN
 
   const withLocale = (path: string) => `/${locale}${path}`
 

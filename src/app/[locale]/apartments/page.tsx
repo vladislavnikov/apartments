@@ -1,6 +1,6 @@
-import { getApartments } from '@/app/api/apartments'
-import ImageCarousel from 'components/apartments/ImageCarousel'
-import { Locale } from '@/shared/enum'
+import ImageCarousel from '../../../../components/apartments/ImageCarousel'
+import { Locale } from '../../../shared/enum'
+import { getApartments } from '../../api/apartments'
 
 function pickBg(i: number) {
   return i % 2 === 0 ? 'bg-[#b7b07a]' : 'bg-[#bdbdbd]'
@@ -8,7 +8,7 @@ function pickBg(i: number) {
 
 export default async function ApartmentsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const loc: Locale = locale === 'bg' ? 'bg' : 'en'
+  const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
   const apartments = await getApartments(loc)
 
