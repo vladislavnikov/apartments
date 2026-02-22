@@ -36,7 +36,7 @@ export default function Footer() {
               <h3 className="font-semibold text-sm sm:text-base mb-2 sm:mb-3">
                 {locale === Locale.EN ? 'Address' : 'Адрес'}
               </h3>
-              <p>{locale === Locale.EN ? 'ul. „Mostova“ 1' : 'ул. „Мостова“ 1'}</p>
+              <p>{locale === Locale.EN ? '1 Mostova Street' : 'ул. „Мостова“ 1'}</p>
               <p className="text-xs sm:text-sm">
                 {locale === Locale.EN ? 'Plovdiv, 4000' : 'Пловдив, 4000'}
               </p>

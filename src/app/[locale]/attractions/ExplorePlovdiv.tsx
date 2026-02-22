@@ -17,18 +17,25 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
       {places.map((place, index) => (
         <div key={index} className={place.reverse ? 'bg-white' : 'bg-gray-100'}>
           <div className="max-w-3xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:items-stretch">
               <div className={place.reverse ? 'md:order-2' : ''}>
-                <Image
-                  src={place.image}
-                  alt={place.title}
-                  width={700}
-                  height={450}
-                  className="w-full h-full object-cover"
-                />
+                <div className="relative w-full min-h-[220px] sm:min-h-[280px] md:min-h-[320px] md:h-full overflow-hidden">
+                  <Image
+                    src={place.image}
+                    alt={place.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    priority={index === 0}
+                  />
+                </div>
               </div>
 
-              <div className={place.reverse ? 'md:order-1 px-4' : 'px-4'}>
+              <div
+                className={
+                  (place.reverse ? 'md:order-1 ' : '') + 'px-4 flex flex-col justify-center h-full'
+                }
+              >
                 <h3 className="text-lg font-semibold mb-2 text-black text-center">{place.title}</h3>
                 <p className="text-sm leading-relaxed text-gray-700 text-center">{place.text}</p>
               </div>

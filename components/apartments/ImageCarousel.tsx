@@ -193,7 +193,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="absolute right-3 top-3 z-30 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all"
+                className="absolute right-3 top-2 z-30 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all"
                 aria-label="Close"
               >
                 <svg

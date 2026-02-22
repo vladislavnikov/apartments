@@ -36,15 +36,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       ? {
           title: 'Apartments by the River',
           text: `
-            One and two-bedroom apartments, situated in the heart of Plovdiv.
-            A brand new building awaiting its visitors, ready to become their favourite place to stay.
+            One and two-bedroom apartments for short-term rentals, situated in the heart of Plovdiv.
         `,
         }
       : {
           title: 'Апартаменти край реката',
           text: `
-            Едностайни и двустайни апартаменти, разположени в сърцето на Пловдив.
-            Напълно нова сграда, очакваща своите посетители, готова да стане тяхното любимо място за престой.
+            Едностайни и двустайни апартаменти за краткосрочно настаняване, разположени в сърцето на Пловдив.
         `,
         }
 

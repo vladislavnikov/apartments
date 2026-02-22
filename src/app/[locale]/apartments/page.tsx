@@ -29,9 +29,9 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
               className="grid grid-cols-1 md:grid-cols-2 items-stretch border border-black/10 md:h-[420px] md:max-h-[335px] overflow-hidden rounded-lg sm:rounded-none"
             >
               <div className={`${pickBg(i)} md:h-full`}>
-                <div className="hidden md:flex h-full items-center justify-center p-8 lg:p-10">
+                <div className="hidden md:flex h-full items-center justify-center p-8 lg:p-10 -translate-y-4">
                   <div className="w-full">
-                    <h3 className="text-lg lg:text-xl font-semibold italic mb-4 lg:mb-5 text-center">
+                    <h3 className="text-lg lg:text-xl font-semibold italic lg:mb-6 text-center md:mb-6">
                       {s.sectionTitle}
                     </h3>
 

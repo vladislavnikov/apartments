@@ -1,4 +1,3 @@
-import { getApartments } from '@/app/api/apartments'
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
 import { Locale } from '@/shared/enum'
 
@@ -6,9 +5,11 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
-  const apartments = await getApartments(loc)
-  const allImages =
-    apartments?.sections?.flatMap((section) => section.images ?? []).filter((img) => img?.url) ?? []
+  const allImages = [
+    { url: '/booking/1.jpg' },
+    { url: '/booking/2.jpg' },
+    { url: '/booking/3.jpg' },
+  ]
 
   const content =
     loc === 'en'
@@ -18,8 +19,8 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
             <>
               Want to book an apartment or need more information?
               <br />
-              Feel free to reach out to us via phone <em>(WhatsApp, Viber)</em> or email, and
-              we&apos;ll respond promptly to assist you.
+              Feel free to reach out to us via phone, WhatsApp, Viber or email, and we&apos;ll
+              respond promptly to assist you.
               <br />
               We are eager to hear from you!
             </>
@@ -31,8 +32,8 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
             <>
               Искате да резервирате апартамент или имате нужда от повече информация?
               <br />
-              Свържете се с нас по телефон <em>(WhatsApp, Viber)</em> или имейл, и ние ще отговорим
-              възможно най-бързо.
+              Свържете се с нас по телефон, WhatsApp, Viber или имейл и ние ще отговорим възможно
+              най-бързо.
               <br />
               Очакваме Ви!
             </>
