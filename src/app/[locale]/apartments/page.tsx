@@ -13,7 +13,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
   const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
   const price = loc === Locale.BG ? 'Цени от' : 'Prices from'
-  const images = ['/apartments/plans.png', '/apartments/bed.png', '/apartments/people.png']
+  const images = ['/apartments/plans.png', '/apartments/sofa.png', '/apartments/people.png']
   const apartments = await getApartments(loc)
 
   if (!apartments) {
@@ -47,9 +47,9 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                       </ul>
                       {s.content.at(-1) && (
                         <div className="mt-8 flex justify-center">
-                          <div className="bg-black/80 text-white px-4 py-1 rounded-lg text-center shadow-md">
-                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
+                          <div className=" backdrop-blur-md bg-white/30 text-white px-4 py-1 rounded-lg text-center shadow-md">
                             <p className="text-xs text-white/70 mt-0.5 italic">{price}</p>
+                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
                           </div>
                         </div>
                       )}
@@ -76,8 +76,8 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                       {s.content.at(-1) && (
                         <div className="flex justify-center items-center">
                           <div className="bg-black/80 text-white px-4 py-1 rounded-lg text-center shadow-md">
-                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
                             <p className="text-xs text-white/70 mt-0.5 italic">{price}</p>
+                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
                           </div>
                         </div>
                       )}

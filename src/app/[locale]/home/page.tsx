@@ -49,7 +49,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="w-full">
-      <div className="relative w-full h-[40vh] sm:h-[32vh] md:h-[62vh] lg:h-82vh]">
+      <div className="relative w-full h-[100vh] sm:h-[32vh] md:h-[100vh] lg:h-82vh]">
         <HeroVideo />
 
         <div className="absolute top-0 left-0 w-full z-20">
@@ -57,7 +57,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         <div className="absolute inset-0 z-10 flex items-center justify-center px-3 sm:px-4 md:px-6">
-          <div className="w-full max-w-2xl bg-white/70 sm:bg-white/65 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center">
+          <div className="w-full max-w-2xl bg-white/65 sm:bg-white/30 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif tracking-wide text-black">
               {main.title}
             </h1>
@@ -70,8 +70,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <ExtrasRow locale={loc} />
 
-      <div className="bg-red-50 py-3 sm:py-2 flex items-center justify-center">
-        <p className="max-w-4xl text-xs sm:text-sm md:text-base text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
+      <div className="bg-red-50 py-6 sm:py-6 flex items-center justify-center">
+        <p className="max-w-6xl text-xl sm:text-xl md:text-xl text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
           {welcomeText}
         </p>
       </div>

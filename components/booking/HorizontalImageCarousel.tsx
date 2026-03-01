@@ -43,9 +43,9 @@ export default function HorizontalImageCarousel({ images }: Props) {
             return (
               <SwiperSlide
                 key={`${img.url}-${i}`}
-                className="!w-[calc(50%-8px)] sm:!w-[calc(50%-12px)] md:!w-[calc(33.333%-10.67px)]"
+                className="!w-[calc(20%-8px)] sm:!w-[calc(30%-12px)] md:!w-[calc(33.333%-10.67px)]"
               >
-                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] relative">
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 aspect-square relative">
                   {!isLoaded && (
                     <div className="absolute inset-0 grid place-items-center bg-white">
                       <Spinner color="warning" label="Loading..." labelColor="warning" />

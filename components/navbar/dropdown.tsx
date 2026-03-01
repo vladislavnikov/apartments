@@ -41,7 +41,7 @@ export default function LanguageChange() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button className="h-8 w-8 min-w-0 p-0 border-none" variant="ghost">
+        <Button className="h-11 w-11 min-w-0 p-0 border-none" variant="ghost">
           {selectedValue}
         </Button>
       </DropdownTrigger>

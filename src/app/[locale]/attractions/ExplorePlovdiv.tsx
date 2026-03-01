@@ -11,10 +11,6 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white w-full">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-center py-3 sm:py-4 text-black">
-        {locale === Locale.BG ? 'Разгледай Пловдив' : 'Explore Plovdiv'}
-      </h2>
-
       {places.map((place, index) => (
         <div key={index} className={place.reverse ? 'bg-white' : 'bg-gray-100'}>
           <div className="max-w-3xl mx-auto px-4">
