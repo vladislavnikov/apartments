@@ -15,7 +15,7 @@ export default function HorizontalImageCarousel({ images }: Props) {
   if (!images || images.length === 0) return null
 
   return (
-    <div className="w-full py-3 sm:py-4 md:py-6 bg-white overflow-hidden">
+    <div className="w-full py-3 sm:py-4 md:py-6 bg-gray-100 overflow-hidden mb:bg-white">
       <div className="w-full [&_.swiper]:!pb-0">
         <Swiper
           slidesPerView="auto"
