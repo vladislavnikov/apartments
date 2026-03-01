@@ -23,7 +23,12 @@ export default function LanguageChange() {
   const params = useParams<{ locale?: string }>()
   const locale = params?.locale === Locale.BG ? Locale.BG : Locale.EN
 
-  const selectedValue = locale === Locale.EN ? 'English' : 'Български'
+  const selectedValue =
+    locale === Locale.EN ? (
+      <img src="/languages/uk.png" alt="English flag" className="w-6 h-6" />
+    ) : (
+      <img src="/languages/bg.png" alt="Bulgarian flag" className="w-6 h-6" />
+    )
 
   const handleSelectionChange = (keys: any) => {
     const picked = keys.currentKey as string
@@ -36,7 +41,7 @@ export default function LanguageChange() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button className="capitalize rounded-none h-12 px-3 sm:px-4" variant="bordered">
+        <Button className="h-8 w-8 min-w-0 p-0 border-none" variant="ghost">
           {selectedValue}
         </Button>
       </DropdownTrigger>
@@ -50,8 +55,18 @@ export default function LanguageChange() {
         onSelectionChange={handleSelectionChange}
         className="text-black"
       >
-        <DropdownItem key="English">English</DropdownItem>
-        <DropdownItem key="Bulgarian">Български</DropdownItem>
+        <DropdownItem key="English">
+          <div className="flex items-cente">
+            <img src="/languages/uk.png" alt="English flag" className="w-6 h-6 mr-1" />
+            English
+          </div>
+        </DropdownItem>
+        <DropdownItem key="Bulgarian">
+          <div className="flex items-center">
+            <img src="/languages/bg.png" alt="Bulgarian flag" className="w-6 h-6 mr-1" />
+            Bulgarian
+          </div>
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   )
