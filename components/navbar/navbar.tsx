@@ -35,13 +35,11 @@ export default function TopNav() {
             { label: 'Home', href: withLocale('/home') },
             { label: 'Apartments', href: withLocale('/apartments') },
             { label: 'Nearby Attractions', href: withLocale('/attractions') },
-            { label: 'Book an Apartment', href: withLocale('/booking') },
           ]
         : [
             { label: 'Начало', href: withLocale('/home') },
             { label: 'Апартаменти', href: withLocale('/apartments') },
             { label: 'Забележителности в близост', href: withLocale('/attractions') },
-            { label: 'Резервирай апартамент', href: withLocale('/booking') },
           ],
     [locale],
   )
