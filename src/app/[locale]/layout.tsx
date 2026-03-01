@@ -4,6 +4,7 @@ import Footer from 'components/Footer'
 import TopNav from 'components/navbar/navbar'
 import { Metadata } from 'next'
 import { Locale, LOCALES } from '@/shared/enum'
+import NavbarWrapper from 'components/navbar/NavbarWrapper'
 
 export async function generateMetadata({
   params,
@@ -38,7 +39,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="h-full">
       <body className="w-full h-full overflow-x-hidden flex flex-col">
-        <TopNav />
+        <NavbarWrapper />
         <main className="w-full flex-grow flex flex-col">{children}</main>
         <Footer />
       </body>

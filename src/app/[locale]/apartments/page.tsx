@@ -1,3 +1,4 @@
+import TopNav from 'components/navbar/navbar'
 import ImageCarousel from '../../../../components/apartments/ImageCarousel'
 import { Locale } from '../../../shared/enum'
 import { getApartments } from '../../api/apartments'
