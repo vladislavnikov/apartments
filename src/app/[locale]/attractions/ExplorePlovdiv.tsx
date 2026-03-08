@@ -4,7 +4,10 @@ import Image from 'next/image'
 import React from 'react'
 import { placesBg, placesEn } from './content'
 import { Locale } from '@/shared/enum'
-import TopNav from 'components/navbar/navbar'
+
+function pickBg(i: number) {
+  return i % 2 === 0 ? 'bg-white' : 'bg-[var(--color-two)]'
+}
 
 export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
   const places = locale === Locale.BG ? placesBg : placesEn
@@ -12,7 +15,7 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
   return (
     <section className="bg-white w-full">
       {places.map((place, index) => (
-        <div key={index} className={place.reverse ? 'bg-white' : 'bg-gray-100'}>
+        <div key={index} className={pickBg(index)}>
           <div className="max-w-3xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:items-stretch">
               <div className={place.reverse ? 'md:order-2' : ''}>

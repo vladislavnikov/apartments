@@ -1,15 +1,17 @@
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
 import { Locale } from '@/shared/enum'
-import { getApartments } from '@/app/api/apartments'
 import AnimateIn from './animation'
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
-  const apartments = await getApartments(loc)
   const images = [
-    ...(apartments?.sections?.flatMap((s) => s.images ?? []).filter((i) => i?.url) ?? []),
+    { src: '/booking/carousel/1.jpg', alt: 'Booking 1' },
+    { src: '/booking/carousel/2.jpg', alt: 'Booking 2' },
+    { src: '/booking/carousel/3.jpg', alt: 'Booking 3' },
+    { src: '/booking/carousel/4.jpg', alt: 'Booking 4' },
+    { src: '/booking/carousel/5.jpg', alt: 'Booking 5' },
   ]
 
   const content =
@@ -25,7 +27,7 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
 
   return (
     <section className="w-full h-auto flex flex-col">
-      <div className="w-full bg-gray-100">
+      <div className="w-full">
         <div className="max-w-3xl mx-auto px-5 md:px-7 text-center py-7">
           <AnimateIn from="top">
             <p className="mx-auto max-w-3xl text-2xl md:text-3xl text-gray-900">{content.text}</p>

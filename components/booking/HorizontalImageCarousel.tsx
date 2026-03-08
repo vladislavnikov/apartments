@@ -6,7 +6,12 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import { Spinner } from '@heroui/spinner'
 
-type Props = { images: { url: string; alt?: string | null }[] }
+type ImageItem = { url: string; alt: string } | { src: string; alt: string }
+type Props = { images: ImageItem[] }
+
+function getUrl(img: ImageItem): string {
+  return 'url' in img ? img.url : img.src
+}
 
 export default function HorizontalImageCarousel({ images }: Props) {
   const duplicatedImages = useMemo(() => (images ? [...images, ...images] : []), [images])
@@ -15,13 +20,13 @@ export default function HorizontalImageCarousel({ images }: Props) {
   if (!images || images.length === 0) return null
 
   return (
-    <div className="w-full py-3 sm:py-4 md:py-6 bg-gray-100 overflow-hidden mb:bg-white">
+    <div className="w-full py-3 sm:py-4 md:py-6 bg-[var(--color-navbar)] overflow-hidden">
       <div className="w-full [&_.swiper]:!pb-0">
         <Swiper
           slidesPerView="auto"
-          spaceBetween={16}
+          spaceBetween={5}
           loop={images.length > 3}
-          speed={3000}
+          speed={7000}
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
@@ -38,29 +43,29 @@ export default function HorizontalImageCarousel({ images }: Props) {
           style={{ paddingBottom: 0, marginBottom: 0 }}
         >
           {duplicatedImages.map((img, i) => {
+            const url = getUrl(img)
             const isLoaded = !!loaded[i]
 
             return (
               <SwiperSlide
-                key={`${img.url}-${i}`}
-                className="!w-[calc(20%-8px)] sm:!w-[calc(30%-12px)] md:!w-[calc(33.333%-10.67px)]"
+                key={`${url}-${i}`}
+                className="!w-[calc(15%-8px)] sm:!w-[calc(22%-12px)] md:!w-[calc(25%-10.67px)]"
               >
-                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 aspect-square relative">
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 aspect-square relative w-[85%] mx-auto">
                   {!isLoaded && (
                     <div className="absolute inset-0 grid place-items-center bg-white">
                       <Spinner color="warning" label="Loading..." labelColor="warning" />
                     </div>
                   )}
-
                   <img
-                    src={img.url}
+                    src={url}
                     alt={img.alt || `Apartment image ${i + 1}`}
                     loading="lazy"
                     className={`w-full h-full object-cover transition-opacity duration-300 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => setLoaded((prev) => ({ ...prev, [i]: true }))}
-                    onError={() => setLoaded((prev) => ({ ...prev, [i]: true }))} // hide spinner even if broken
+                    onError={() => setLoaded((prev) => ({ ...prev, [i]: true }))}
                   />
                 </div>
               </SwiperSlide>

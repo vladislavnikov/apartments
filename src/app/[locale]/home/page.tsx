@@ -3,6 +3,7 @@ import WhyChooseUs from 'components/home/WhyChooseUs'
 import { Locale } from '@/shared/enum'
 import TransparentNav from 'components/navbar/homeNavbar'
 import HeroVideo from 'components/home/videoCarousel'
+import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -12,6 +13,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     { src: '/images/homePage/1.avif', alt: 'Home 1' },
     { src: '/images/homePage/2.avif', alt: 'Home 2' },
     { src: '/images/homePage/3.avif', alt: 'Home 3' },
+  ]
+
+  const carouselImages = [
+    { src: '/home/carousel/101.jpg', alt: 'Home 1' },
+    { src: '/home/carousel/102.jpg', alt: 'Home 2' },
+    { src: '/home/carousel/103.jpg', alt: 'Home 3' },
+    { src: '/home/carousel/104.jpg', alt: 'Home 4' },
+    { src: '/home/carousel/105.jpg', alt: 'Home 5' },
+    { src: '/home/carousel/106.jpg', alt: 'Home 6' },
+    { src: '/home/carousel/107.jpg', alt: 'Home 7' },
+    { src: '/home/carousel/108.jpg', alt: 'Home 8' },
+    { src: '/home/carousel/109.jpg', alt: 'Home 9' },
+    { src: '/home/carousel/110.jpg', alt: 'Home 10' },
   ]
 
   const welcomeText =
@@ -57,7 +71,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         <div className="absolute inset-0 z-10 flex items-center justify-center px-3 sm:px-4 md:px-6">
-          <div className="w-full max-w-2xl bg-white/50 sm:bg-white/50 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center">
+          <div
+            className="w-full max-w-2xl bg-white/50 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center"
+            style={{
+              maskImage:
+                'linear-gradient(to bottom, transparent 0%, black 20%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 20%, black 95%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, transparent 0%, black 20%, black 90%, transparent 100%), linear-gradient(to right, transparent 0%, black 20%, black 95%, transparent 100%)',
+              maskComposite: 'intersect',
+              WebkitMaskComposite: 'source-in',
+            }}
+          >
             <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
             <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg text-black leading-relaxed">
               {main.text}
@@ -68,13 +92,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <ExtrasRow locale={loc} />
 
-      <div className="bg-red-50 py-6 sm:py-6 flex items-center justify-center">
+      <div className="bg-[var(--color-navbar)] py-6 sm:py-6 flex items-center justify-center">
         <p className="max-w-6xl text-xl sm:text-xl md:text-xl text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
           {welcomeText}
         </p>
       </div>
 
       <WhyChooseUs locale={loc} />
+      <div className="w-full">
+        <HorizontalImageCarousel images={[...carouselImages, ...carouselImages]} />
+      </div>
     </div>
   )
 }

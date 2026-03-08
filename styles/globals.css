@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin '../hero.ts';
 
@@ -7,8 +7,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans: "font", sans-serif;
-    --font-mono: "monospace", monospace;
+  --font-sans: 'font', sans-serif;
+  --font-mono: 'monospace', monospace;
+}
+
+:root {
+  --color-one: #a3cceb;
+  --color-two: #d4e8f6;
+  --color-navbar: #f8f8ff;
+  --color-logo: #15385f;
 }
 
 .swiper {
@@ -30,7 +37,6 @@
   object-fit: cover;
   display: block;
 }
-
 
 :root {
   --font-mono: 'Roboto Mono', monospace;
@@ -119,8 +125,6 @@ p {
 }
 
 a {
-  color: currentColor;
-
   &:focus {
     opacity: 0.8;
     outline: none;

@@ -54,7 +54,7 @@ export default function TransparentNav() {
             <button
               type="button"
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="inline-flex items-center w-10 h-10 justify-center text-sm text-white rounded-base hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
+              className="inline-flex items-center w-10 h-10 justify-center text-sm text-[var(--color-logo)] rounded-base hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -84,7 +84,8 @@ export default function TransparentNav() {
 
           <Link
             href={withLocale('/booking')}
-            className="bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
+            style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
+            className="bg-white text-[#15385f] text-sm font-medium px-4 py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
           >
             Book Now
           </Link>
@@ -107,8 +108,8 @@ export default function TransparentNav() {
                   href={item.href}
                   className={`block py-2 px-3 rounded transition-all duration-200 hover:bg-white/20 hover:pl-5 ${
                     pathname === item.href
-                      ? 'text-white bg-white/25 font-semibold'
-                      : 'text-white/90'
+                      ? 'text-[var(--color-logo)] bg-white/25 font-semibold'
+                      : 'text-[var(--color-logo)]'
                   }`}
                 >
                   {item.label}

@@ -1,15 +1,6 @@
 'use client'
 
 import { useMemo, useState, useEffect } from 'react'
-import {
-  Navbar,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  Divider,
-} from '@heroui/react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import LanguageChanger from './dropdown'
@@ -45,58 +36,75 @@ export default function TopNav() {
   )
 
   return (
-    <Navbar
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-      className="bg-[#F0FFFF] px-3 sm:px-4 md:px-6"
-    >
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="sm:hidden text-black"
-        />
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden sm:flex gap-0 text-black text-sm sm:text-base"
-        justify="center"
-      >
-        {menuItems.map((item, index) => (
-          <div key={item.href} className="flex items-center">
-            <NavbarItem>
-              <Link href={item.href} className="whitespace-nowrap">
-                {item.label}
-              </Link>
-            </NavbarItem>
-
-            {index !== menuItems.length - 1 && (
-              <Divider orientation="vertical" className="h-5 mx-2 sm:mx-3 md:mx-4 border-black" />
-            )}
-          </div>
-        ))}
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <LanguageChanger />
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarMenu
-        className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden bg-[#F0FFFF] text-black py-4`}
-      >
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={index} className="py-2">
-            <Link
-              className="w-full block py-2 px-4 text-base hover:bg-[#E0EEEE] transition-colors"
-              href={item.href}
-              onClick={() => setIsMenuOpen(false)}
+    <div>
+      <nav className="w-full z-20 bg-[#F8F8FF] relative">
+        <div className="max-w-screen-xl relative flex items-center justify-between mx-auto py-5">
+          {/* Left side */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="inline-flex items-center w-10 h-10 justify-center rounded text-[var(--color-logo)]"
+              aria-expanded={isMenuOpen}
             >
-              {item.label}
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className={`w-10 h-10 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : 'rotate-0'}`}
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  d="M5 7h14M5 12h14M5 17h14"
+                />
+              </svg>
+            </button>
+            <LanguageChanger />
+          </div>
+
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Link href={withLocale('/home')}>
+              <img src="/logo.png" alt="Logo" className="h-22 w-44 object-contain" />
             </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+          </div>
+
+          <Link
+            href={withLocale('/booking')}
+            className="bg-white text-[var(--color-logo)] text-sm font-medium px-4 py-2 rounded hover:bg-white/30 transition-all duration-200"
+            style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
+          >
+            Book Now
+          </Link>
+        </div>
+
+        {/* Dropdown */}
+        <div
+          className={`absolute w-full bg-[var(--color-navbar)] z-50 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+            isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <ul className="flex flex-col font-medium p-4 space-y-1 border-t border-gray-200">
+            {menuItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`block py-2 px-3 rounded transition-all duration-200 hover:bg-[var(--color-two)] hover:pl-5 ${
+                    pathname === item.href
+                      ? 'text-[var(--color-logo)] font-bold'
+                      : 'text-[var(--color-logo)]'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </div>
   )
 }

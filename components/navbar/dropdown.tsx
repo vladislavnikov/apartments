@@ -49,7 +49,7 @@ export default function LanguageChange() {
       <DropdownMenu
         disallowEmptySelection
         aria-label="Language selection"
-        selectedKeys={new Set([locale === 'en' ? 'English' : 'Bulgarian'])}
+        selectedKeys={new Set([locale === 'en' ? 'English' : 'Български'])}
         selectionMode="single"
         variant="flat"
         onSelectionChange={handleSelectionChange}

@@ -1,19 +1,23 @@
-import TopNav from 'components/navbar/navbar'
 import ImageCarousel from '../../../../components/apartments/ImageCarousel'
 import { Locale } from '../../../shared/enum'
 import { getApartments } from '../../api/apartments'
 import ApartmentCard from './apartament-card'
 
 function pickBg(i: number) {
-  return i % 2 === 0 ? 'bg-[#6CB4EE]' : 'bg-[#B9D9EB]'
+  return i % 2 === 0 ? 'bg-[var(--color-one)]' : 'bg-[var(--color-two)]'
 }
 
 export default async function ApartmentsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
-  const price = loc === Locale.BG ? 'Цени от' : 'Prices from'
-  const images = ['/apartments/plans.png', '/apartments/sofa.png', '/apartments/people.png']
+  const price = loc === Locale.BG ? 'от' : 'from'
+  const images = [
+    '/apartments/plans.png',
+    '/apartments/sofa.png',
+    '/apartments/people.png',
+    '/apartments/tag.png',
+  ]
   const apartments = await getApartments(loc)
 
   if (!apartments) {
@@ -21,13 +25,13 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-2">
       <div className="max-w-4xl mt-2 mx-auto text-black mb-4 sm:mb-5 px-3 sm:px-4">
         <div className="space-y-4 sm:space-y-5">
           {apartments.sections?.map((s, i) => (
             <ApartmentCard key={i} index={i}>
-              <article className="grid grid-cols-1 md:grid-cols-2 items-stretch border border-black/10 md:h-[420px] md:max-h-[335px] overflow-hidden rounded-lg sm:rounded-none">
-                <div className={`${pickBg(i)} md:h-full`}>
+              <article className="grid grid-cols-1 md:grid-cols-2 items-stretch md:h-[420px] md:max-h-[335px] overflow-hidden rounded-lg sm:rounded-none">
+                <div className={`${pickBg(i)} rounded-l-lg md:h-full`}>
                   <div className="hidden md:flex h-full items-center justify-center px-6 lg:px-8">
                     <div className="w-full">
                       <h3 className="text-lg lg:text-xl font-semibold italic mb-5 text-center">
@@ -47,9 +51,15 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                       </ul>
                       {s.content.at(-1) && (
                         <div className="mt-8 flex justify-center">
-                          <div className=" backdrop-blur-md bg-white/30 text-white px-4 py-1 rounded-lg text-center shadow-md">
-                            <p className="text-xs text-white/70 mt-0.5 italic">{price}</p>
-                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
+                          <div className="text-black px-4 py-1 rounded-lg text-center shadow-md">
+                            <span className="text-xl flex items-center gap-2">
+                              <img
+                                src={images[3]}
+                                alt=""
+                                className="w-7 h-7 object-cover rounded mt-1 flex-shrink-0"
+                              />
+                              {price} {s.content.at(-1)}
+                            </span>
                           </div>
                         </div>
                       )}
@@ -84,7 +94,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                     </div>
                   </div>
                 </div>
-                <div className="h-[220px] sm:h-[260px] md:h-full overflow-hidden">
+                <div className="h-[220px] sm:h-[260px] md:h-full overflow-hidden rounded-r-lg">
                   <ImageCarousel title={s.sectionTitle} images={s.images ?? []} />
                 </div>
               </article>
