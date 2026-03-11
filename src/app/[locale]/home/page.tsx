@@ -72,18 +72,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
         <div className="absolute inset-0 z-10 flex items-center justify-center px-3 sm:px-4 md:px-6">
           <div
-            className="w-full max-w-2xl bg-white/50 px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center"
+            className="w-full max-w-2xl bg-white/50 backdrop-blur-xs px-2 py-2 sm:px-6 sm:py-8 md:px-12 md:py-10 text-center"
             style={{
-              maskImage:
-                'linear-gradient(to bottom, transparent 0%, black 20%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 20%, black 95%, transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to bottom, transparent 0%, black 20%, black 90%, transparent 100%), linear-gradient(to right, transparent 0%, black 20%, black 95%, transparent 100%)',
+              maskImage: `
+      linear-gradient(to right, transparent 0%, black 20%, black 60%,black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 20%, black 60%,black 80%, transparent 100%)
+    `,
               maskComposite: 'intersect',
+              WebkitMaskImage: `
+      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)
+    `,
               WebkitMaskComposite: 'source-in',
             }}
           >
             <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
-            <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg text-black leading-relaxed">
+            <p className="text-xs text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-10">
               {main.text}
             </p>
           </div>

@@ -30,7 +30,7 @@ export default function Footer() {
                   <FaFacebookF className="text-base sm:text-lg" />
                 </a>
                 <a
-                  href="https://www.facebook.com/profile.php?id=61578379520805"
+                  href="https://www.instagram.com/apartmentsbytheriver?igsh=MWc4bHd6bm45cHRl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-blue-500 transition-colors"

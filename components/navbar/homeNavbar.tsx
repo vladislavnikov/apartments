@@ -37,7 +37,7 @@ export default function TransparentNav() {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full z-50"
+      className="top-0 left-0 w-full z-50"
       style={
         !isMenuOpen
           ? {
@@ -47,7 +47,7 @@ export default function TransparentNav() {
           : undefined
       }
     >
-      <nav className="w-full z-20 backdrop-blur-md bg-white/50 ">
+      <nav className="w-full z-20 backdrop-blur-xs bg-white/30 ">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto py-5">
           {/* Left side */}
           <div className="flex items-center gap-2">

@@ -37,7 +37,7 @@ export default function TopNav() {
 
   return (
     <div>
-      <nav className="w-full z-20 bg-[#F8F8FF] relative">
+      <nav className="w-full z-20 bg-[var(--color-navbar)] relative">
         <div className="max-w-screen-xl relative flex items-center justify-between mx-auto py-5">
           {/* Left side */}
           <div className="flex items-center gap-2">
@@ -77,7 +77,7 @@ export default function TopNav() {
             className="bg-white text-[var(--color-logo)] text-sm font-medium px-4 py-2 rounded hover:bg-white/30 transition-all duration-200"
             style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
           >
-            Book Now
+            {locale === 'en' ? 'Book now' : 'Резервивай'}
           </Link>
         </div>
 
