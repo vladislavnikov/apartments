@@ -50,15 +50,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     loc === 'en'
       ? {
           title: 'Apartments by the River',
-          text: `
-            One and two-bedroom apartments for short-term rentals, situated in the heart of Plovdiv.
-        `,
+          text: (
+            <>
+              One and two-bedroom apartments for short-term rentals,
+              <br />
+              situated in the heart of Plovdiv.
+            </>
+          ),
         }
       : {
           title: 'Апартаменти край реката',
-          text: `
-            Едностайни и двустайни апартаменти за краткосрочно настаняване, разположени в сърцето на Пловдив.
-        `,
+          text: (
+            <>
+              Едностайни и двустайни апартаменти за краткосрочно настаняване,
+              <br />
+              разположени в сърцето на Пловдив.
+            </>
+          ),
         }
 
   return (
@@ -87,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             }}
           >
             <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
-            <p className="text-xs text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-10">
+            <p className="text-xs font-medium text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-25">
               {main.text}
             </p>
           </div>

@@ -68,7 +68,11 @@ export default function TopNav() {
 
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link href={withLocale('/home')}>
-              <img src="/logo.png" alt="Logo" className="h-22 w-44 object-contain" />
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="h-18 w-36 sm:h-20 sm:w-40 md:h-22 md:w-44 object-contain"
+              />
             </Link>
           </div>
 
