@@ -76,7 +76,7 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
         <div className="w-full h-[300px] sm:h-[360px] md:h-[400px] overflow-hidden">
           <iframe
             title="Apartments by the River"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2958.214!2d24.748!3d42.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDA5JzAwLjAiTiAyNMKwNDQnNTIuOCJF!5e0!3m2!1sen!2sbg!4v123456789"
+            src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"
             className="w-full h-full"
             style={{ border: 0 }}
             loading="lazy"
