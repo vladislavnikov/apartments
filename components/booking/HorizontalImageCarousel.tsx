@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   images: { src?: string; url?: string; alt?: string }[]
@@ -49,11 +49,11 @@ export default function HorizontalImageCarousel({ images }: Props) {
   const groupRef = useRef<HTMLDivElement>(null)
   const [groupWidth, setGroupWidth] = useState(0)
 
-  if (!images?.length) return null
-
-  const base = buildBase(images)
+  const base = useMemo(() => buildBase(images ?? []), [images])
 
   useEffect(() => {
+    if (!images?.length) return
+
     const measure = () => {
       if (groupRef.current) {
         setGroupWidth(groupRef.current.getBoundingClientRect().width)
@@ -73,7 +73,9 @@ export default function HorizontalImageCarousel({ images }: Props) {
       resizeObserver.disconnect()
       window.removeEventListener('resize', measure)
     }
-  }, [base.length])
+  }, [images, base.length])
+
+  if (!images?.length) return null
 
   return (
     <div className="w-full py-3 sm:py-4 md:py-6 bg-[var(--color-navbar)] overflow-hidden">
