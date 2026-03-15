@@ -77,7 +77,7 @@ export default function TopNav() {
             className="bg-white text-[var(--color-logo)] text-sm font-medium px-4 py-2 rounded hover:bg-white/30 transition-all duration-200"
             style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
           >
-            {locale === 'en' ? 'Book now' : 'Резервивай'}
+            {locale === Locale.EN ? 'Book now' : 'Резервивай'}
           </Link>
         </div>
 

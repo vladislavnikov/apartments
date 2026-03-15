@@ -87,7 +87,7 @@ export default function TransparentNav() {
             style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
             className="bg-white text-[#15385f] text-sm font-medium px-4 py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
           >
-            Book Now
+            {locale === Locale.EN ? 'Book now' : 'Резервивай'}
           </Link>
         </div>
 
