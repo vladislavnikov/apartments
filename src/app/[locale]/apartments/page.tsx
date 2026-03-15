@@ -18,6 +18,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
     '/apartments/people.png',
     '/apartments/tag.png',
   ]
+
   const apartments = await getApartments(loc)
 
   if (!apartments) {
@@ -30,13 +31,14 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
         <div className="space-y-4 sm:space-y-5">
           {apartments.sections?.map((s, i) => (
             <ApartmentCard key={i} index={i}>
-              <article className="grid grid-cols-1 md:grid-cols-2 items-stretch md:h-[420px] md:max-h-[335px] overflow-hidden rounded-lg sm:rounded-none">
-                <div className={`${pickBg(i)} rounded-l-lg md:h-full`}>
+              <article className="grid grid-cols-1 md:grid-cols-2 items-stretch overflow-hidden rounded-lg md:rounded-none lg:rounded-lg md:h-[420px] md:max-h-[335px]">
+                <div className={`${pickBg(i)} md:h-full`}>
                   <div className="hidden md:flex h-full items-center justify-center px-6 lg:px-8">
                     <div className="w-full">
                       <h3 className="text-lg lg:text-xl font-semibold italic mb-5 text-center">
                         {s.sectionTitle}
                       </h3>
+
                       <ul className="space-y-2 pt-1 lg:text-xl">
                         {s.content.slice(0, -1).map((line: string, idx: number) => (
                           <li key={idx} className="flex ml-6 gap-2 lg:gap-3 items-center">
@@ -49,6 +51,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                           </li>
                         ))}
                       </ul>
+
                       {s.content.at(-1) && (
                         <div className="mt-8 flex justify-center">
                           <div className="text-black px-4 py-1 rounded-lg text-center shadow-md">
@@ -65,6 +68,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                       )}
                     </div>
                   </div>
+
                   <div className="md:hidden p-5 sm:p-6 md:p-8">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold italic mb-4 sm:mb-5 md:mb-6 text-center">
                       {s.sectionTitle}
@@ -83,18 +87,26 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                           </li>
                         ))}
                       </ul>
+
                       {s.content.at(-1) && (
                         <div className="flex justify-center items-center">
-                          <div className="bg-black/80 text-white px-4 py-1 rounded-lg text-center shadow-md">
-                            <p className="text-xs text-white/70 mt-0.5 italic">{price}</p>
-                            <span className="text-xl font-bold">{s.content.at(-1)}</span>
+                          <div className="text-black px-3 py-1 rounded-lg text-center shadow-md">
+                            <span className="text-base flex items-center gap-2">
+                              <img
+                                src={images[3]}
+                                alt=""
+                                className="w-5 h-5 object-cover rounded mt-1 flex-shrink-0"
+                              />
+                              {price} {s.content.at(-1)}
+                            </span>
                           </div>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="h-[220px] sm:h-[260px] md:h-full overflow-hidden rounded-r-lg relative">
+
+                <div className="relative h-[220px] sm:h-[260px] md:h-full overflow-hidden">
                   <ImageCarousel title={s.sectionTitle} images={s.images ?? []} />
 
                   <div className="absolute top-3 right-3 pointer-events-none bg-white/15 backdrop-blur-md border border-white/30 rounded-full p-2 shadow-xl">

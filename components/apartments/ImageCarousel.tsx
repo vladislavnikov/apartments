@@ -34,14 +34,17 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
 
   useEffect(() => {
     if (!open) return
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
       if (!hasMany) return
       if (e.key === 'ArrowLeft') prev()
       if (e.key === 'ArrowRight') next()
     }
+
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
@@ -155,6 +158,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                     />
                   </svg>
                 </button>
+
                 <button
                   type="button"
                   aria-label="Next"
@@ -202,6 +206,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 >
                   {rotatedThumbs.map(({ img, idx }, renderIdx) => {
                     const activeThumb = idx === safe
+
                     return (
                       <button
                         key={`${img.id}-${idx}-${renderIdx}`}
@@ -243,7 +248,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
 
   return (
     <>
-      <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
+      <div className="relative w-full h-full min-h-[220px] sm:min-h-[260px] max-h-[420px] md:max-h-none bg-gray-100 flex items-center justify-center overflow-hidden">
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -253,7 +258,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
           <img
             src={imgs[safe].url}
             alt={imgs[safe].alt || title}
-            className="w-full h-full object-cover scale-105 md:scale-150"
+            className="w-full h-full object-cover scale-105 sm:scale-110 md:scale-125 lg:scale-150 transition-transform duration-500"
             loading="lazy"
             draggable={false}
           />
@@ -271,7 +276,9 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                   e.stopPropagation()
                   setActive(idx)
                 }}
-                className={`h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full transition-all ${idx === safe ? 'bg-white' : 'bg-white/40'}`}
+                className={`h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full transition-all ${
+                  idx === safe ? 'bg-white shadow-md scale-110' : 'bg-white/40 hover:bg-white/70'
+                }`}
               />
             ))}
           </div>
@@ -305,6 +312,7 @@ export default function ImageCarousel({ images, title }: { images: Img[]; title:
                 </svg>
               </span>
             </button>
+
             <button
               type="button"
               aria-label="Next"

@@ -38,9 +38,9 @@ export default function TopNav() {
   return (
     <div>
       <nav className="w-full z-20 bg-[var(--color-navbar)] relative">
-        <div className="max-w-screen-xl relative flex items-center justify-between mx-auto py-5">
+        <div className="max-w-screen-xl relative flex items-center justify-between mx-auto py-4 px-4 sm:px-6">
           {/* Left side */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0">
             <button
               type="button"
               onClick={() => setIsMenuOpen((prev) => !prev)}

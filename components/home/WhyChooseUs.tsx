@@ -29,7 +29,7 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
   return (
     <section className="bg-white">
       <div className="max-w-3xl sm:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
-        <div className="pb-10 ml-2">
+        <div className="pt-3 pb-3 ml-2 lg:pt-0 lg:pb-10">
           <AnimateIn from="left" className="flex flex-col justify-center">
             <h2
               className="text-base sm:text-lg md:text-xl text-black font-semibold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 

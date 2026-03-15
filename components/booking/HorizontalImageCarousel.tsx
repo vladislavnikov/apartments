@@ -108,7 +108,7 @@ export default function HorizontalImageCarousel({ images }: Props) {
           style={
             {
               ['--scroll-width' as string]: groupWidth,
-              ['--duration' as string]: '90s',
+              ['--duration' as string]: '120s',
             } as React.CSSProperties
           }
         >

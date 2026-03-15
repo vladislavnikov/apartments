@@ -48,7 +48,7 @@ export default function TransparentNav() {
       }
     >
       <nav className="w-full z-20 backdrop-blur-xs bg-white/30 ">
-        <div className="max-w-screen-xl flex items-center justify-between mx-auto py-5">
+        <div className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4 sm:px-6">
           {/* Left side */}
           <div className="flex items-center gap-2">
             <button
