@@ -94,8 +94,23 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                     </div>
                   </div>
                 </div>
-                <div className="h-[220px] sm:h-[260px] md:h-full overflow-hidden rounded-r-lg">
+                <div className="h-[220px] sm:h-[260px] md:h-full overflow-hidden rounded-r-lg relative">
                   <ImageCarousel title={s.sectionTitle} images={s.images ?? []} />
+
+                  <div className="absolute top-3 right-3 pointer-events-none bg-white/15 backdrop-blur-md border border-white/30 rounded-full p-2 shadow-xl">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 text-white drop-shadow"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                    >
+                      <circle cx="10.5" cy="10.5" r="6.5" />
+                      <path d="M16.5 16.5L21 21" strokeLinecap="round" />
+                      <path d="M10.5 7.5v6M7.5 10.5h6" strokeLinecap="round" />
+                    </svg>
+                  </div>
                 </div>
               </article>
             </ApartmentCard>
