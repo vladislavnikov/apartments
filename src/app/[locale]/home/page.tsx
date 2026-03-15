@@ -104,7 +104,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <WhyChooseUs locale={loc} />
       <div className="w-full">
-        <HorizontalImageCarousel images={[...carouselImages, ...carouselImages]} />
+        <HorizontalImageCarousel images={carouselImages} />
       </div>
     </div>
   )

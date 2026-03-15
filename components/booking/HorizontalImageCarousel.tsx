@@ -1,77 +1,120 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
 
-import { useMemo, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import { Spinner } from '@heroui/spinner'
+type Props = {
+  images: { src?: string; url?: string; alt?: string }[]
+}
 
-type ImageItem = { url: string; alt: string } | { src: string; alt: string }
-type Props = { images: ImageItem[] }
+function getUrl(img: { src?: string; url?: string }) {
+  return img.url ?? img.src ?? ''
+}
 
-function getUrl(img: ImageItem): string {
-  return 'url' in img ? img.url : img.src
+function buildBase(images: Props['images']) {
+  if (images.length >= 6) return images
+  return [...images, ...images, ...images]
+}
+
+function ImageGroup({
+  images,
+  hidden = false,
+  groupRef,
+}: {
+  images: Props['images']
+  hidden?: boolean
+  groupRef?: React.RefObject<HTMLDivElement | null>
+}) {
+  return (
+    <div
+      ref={groupRef}
+      className="flex shrink-0 gap-2 pr-2 sm:gap-3 sm:pr-3 md:gap-4 md:pr-4"
+      aria-hidden={hidden}
+    >
+      {images.map((img, i) => (
+        <div key={`${hidden ? 'clone' : 'main'}-${i}`} className="flex-shrink-0">
+          <div className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[240px] md:h-[240px] overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+            <img
+              src={getUrl(img)}
+              alt={img.alt || `Apartment image ${i + 1}`}
+              loading="lazy"
+              className="absolute inset-0 block !h-full !w-full object-cover"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default function HorizontalImageCarousel({ images }: Props) {
-  const duplicatedImages = useMemo(() => (images ? [...images, ...images] : []), [images])
-  const [loaded, setLoaded] = useState<Record<number, boolean>>({})
+  const groupRef = useRef<HTMLDivElement>(null)
+  const [groupWidth, setGroupWidth] = useState(0)
 
-  if (!images || images.length === 0) return null
+  if (!images?.length) return null
+
+  const base = buildBase(images)
+
+  useEffect(() => {
+    const measure = () => {
+      if (groupRef.current) {
+        setGroupWidth(groupRef.current.getBoundingClientRect().width)
+      }
+    }
+
+    measure()
+
+    const resizeObserver = new ResizeObserver(measure)
+    if (groupRef.current) {
+      resizeObserver.observe(groupRef.current)
+    }
+
+    window.addEventListener('resize', measure)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', measure)
+    }
+  }, [base.length])
 
   return (
     <div className="w-full py-3 sm:py-4 md:py-6 bg-[var(--color-navbar)] overflow-hidden">
-      <div className="w-full [&_.swiper]:!pb-0">
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={5}
-          loop={images.length > 3}
-          speed={7000}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-          }}
-          allowTouchMove
-          freeMode
-          breakpoints={{
-            640: { slidesPerView: 2, spaceBetween: 24 },
-            1024: { slidesPerView: 3, spaceBetween: 32 },
-          }}
-          modules={[Autoplay]}
-          className="[&_.swiper-wrapper]:!pb-0 [&_.swiper]:!pb-0 [&]:!pb-0"
-          style={{ paddingBottom: 0, marginBottom: 0 }}
-        >
-          {duplicatedImages.map((img, i) => {
-            const url = getUrl(img)
-            const isLoaded = !!loaded[i]
+      <style>{`
+        .carousel-track {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+        }
 
-            return (
-              <SwiperSlide
-                key={`${url}-${i}`}
-                className="!w-[calc(15%-8px)] sm:!w-[calc(22%-12px)] md:!w-[calc(25%-10.67px)]"
-              >
-                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 aspect-square relative w-[85%] mx-auto">
-                  {!isLoaded && (
-                    <div className="absolute inset-0 grid place-items-center bg-white">
-                      <Spinner color="warning" label="Loading..." labelColor="warning" />
-                    </div>
-                  )}
-                  <img
-                    src={url}
-                    alt={img.alt || `Apartment image ${i + 1}`}
-                    loading="lazy"
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
-                      isLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    onLoad={() => setLoaded((prev) => ({ ...prev, [i]: true }))}
-                    onError={() => setLoaded((prev) => ({ ...prev, [i]: true }))}
-                  />
-                </div>
-              </SwiperSlide>
-            )
-          })}
-        </Swiper>
+        .carousel-track.is-ready {
+          animation: marquee var(--duration, 120s) linear infinite;
+        }
+
+        .carousel-track:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(calc(-1px * var(--scroll-width)));
+          }
+        }
+      `}</style>
+
+      <div className="overflow-hidden">
+        <div
+          className={`carousel-track ${groupWidth ? 'is-ready' : ''}`}
+          style={
+            {
+              ['--scroll-width' as string]: groupWidth,
+              ['--duration' as string]: '90s',
+            } as React.CSSProperties
+          }
+        >
+          <ImageGroup images={base} groupRef={groupRef} />
+          <ImageGroup images={base} hidden />
+        </div>
       </div>
     </div>
   )
