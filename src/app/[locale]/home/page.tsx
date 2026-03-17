@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             }}
           >
             <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
-            <p className="text-xs font-medium text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-25">
+            <p className="text-xs font-medium text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-16 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-25">
               {main.text}
             </p>
           </div>

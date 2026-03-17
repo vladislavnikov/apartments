@@ -31,7 +31,7 @@ function ImageGroup({
     >
       {images.map((img, i) => (
         <div key={`${hidden ? 'clone' : 'main'}-${i}`} className="flex-shrink-0">
-          <div className="relative w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[240px] md:h-[240px] overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+          <div className="relative w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
             <img
               src={getUrl(img)}
               alt={img.alt || `Apartment image ${i + 1}`}
