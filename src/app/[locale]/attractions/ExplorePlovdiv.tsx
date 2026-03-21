@@ -36,8 +36,10 @@ export default function ExplorePlovdiv({ locale }: { locale: Locale }) {
                   (place.reverse ? 'md:order-1 ' : '') + 'px-4 flex flex-col justify-center h-full'
                 }
               >
-                <h3 className="text-lg font-semibold mb-2 text-black text-center">{place.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-700 text-center">{place.text}</p>
+                <h3 className="text-lg font-bold text-[var(--color-logo)] mb-2 text-center">
+                  {place.title}
+                </h3>
+                <p className="text-base leading-relaxed text-gray-700 text-center">{place.text}</p>
               </div>
             </div>
           </div>

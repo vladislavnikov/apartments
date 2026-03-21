@@ -9,12 +9,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   const loc: Locale = locale === 'bg' ? Locale.BG : Locale.EN
 
-  const images = [
-    { src: '/images/homePage/1.avif', alt: 'Home 1' },
-    { src: '/images/homePage/2.avif', alt: 'Home 2' },
-    { src: '/images/homePage/3.avif', alt: 'Home 3' },
-  ]
-
   const carouselImages = [
     { src: '/home/carousel/101.jpg', alt: 'Home 1' },
     { src: '/home/carousel/102.jpg', alt: 'Home 2' },
@@ -62,9 +56,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           title: 'Апартаменти край реката',
           text: (
             <>
-              Едностайни и двустайни апартаменти за краткосрочно настаняване,
-              <br />
-              разположени в сърцето на Пловдив.
+              Едностайни и двустайни апартаменти за краткосрочно <br /> настаняване, разположени в
+              сърцето на Пловдив.
             </>
           ),
         }
@@ -88,14 +81,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     `,
               maskComposite: 'intersect',
               WebkitMaskImage: `
-      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)
+      linear-gradient(to right, transparent 0%, black 20%, , black 60%,black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 20%,, black 60%, black 80%, transparent 100%)
     `,
               WebkitMaskComposite: 'source-in',
             }}
           >
             <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
-            <p className="text-xs font-medium text-[var(--color-logo)] sm:text-sm md:text-base lg:text-lg leading-relaxed -translate-y-16 sm:-translate-y-16 md:-translate-y-20 lg:-translate-y-25">
+            <p className="text- font-medium text-[var(--color-logo)] sm:text-base md:text-base lg:text-xl leading-relaxed -translate-y-17 sm:-translate-y-17 md:-translate-y-20 lg:-translate-y-25">
               {main.text}
             </p>
           </div>

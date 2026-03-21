@@ -35,7 +35,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                 <div className={`${pickBg(i)} md:h-full`}>
                   <div className="hidden md:flex h-full items-center justify-center px-6 lg:px-8">
                     <div className="w-full">
-                      <h3 className="text-lg lg:text-xl font-semibold italic mb-5 text-center">
+                      <h3 className="text-lg text-[var(--color-logo)] font-bold lg:text-xl font-semibold italic mb-5 text-center">
                         {s.sectionTitle}
                       </h3>
 
@@ -95,7 +95,7 @@ export default async function ApartmentsPage({ params }: { params: Promise<{ loc
                               <img
                                 src={images[3]}
                                 alt=""
-                                className="w-5 h-5 object-cover rounded mt-1 flex-shrink-0"
+                                className="w-7 h-7 object-cover rounded mt-1 flex-shrink-0"
                               />
                               {price} {s.content.at(-1)}
                             </span>

@@ -30,7 +30,9 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
       <div className="w-full">
         <div className="max-w-3xl mx-auto px-5 md:px-7 text-center py-3 md:py-7">
           <AnimateIn from="top">
-            <p className="mx-auto max-w-3xl text-2xl md:text-3xl text-gray-900">{content.text}</p>
+            <p className="text-[var(--color-logo)] font-bold mx-auto max-w-3xl text-2xl md:text-3xl">
+              {content.text}
+            </p>
           </AnimateIn>
         </div>
       </div>
@@ -72,18 +74,16 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
         </AnimateIn>
       </div>
 
-      <AnimateIn from="right" className="w-full mt-6">
-        <div className="w-full h-[300px] sm:h-[360px] md:h-[400px] overflow-hidden">
-          <iframe
-            title="Apartments by the River"
-            src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"
-            className="w-full h-full"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-      </AnimateIn>
+      <div className="w-full  mt-6 h-[300px] sm:h-[360px] md:h-[400px] overflow-hidden">
+        <iframe
+          title="Apartments by the River"
+          src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"
+          className="w-full h-full"
+          style={{ border: 0 }}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
 
       <div className="w-full">
         <HorizontalImageCarousel images={images} />

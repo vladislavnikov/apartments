@@ -20,10 +20,13 @@ export default function ExtrasRow({ locale }: { locale: Locale }) {
           { label: 'Walking distance to the city center', imgSrc: '/home/icons/walking.png' },
         ]
       : [
-          { label: 'Безплатен Wi-Fi', imgSrc: '/icons/wifi.png' },
-          { label: 'Напълно оборудвана кухня', imgSrc: '/icons/kitchen.png' },
-          { label: 'Частно паркомясто', imgSrc: '/icons/parking.png' },
-          { label: 'На пешеходно разстояние от центъра на града', imgSrc: '/icons/walking.png' },
+          { label: 'Безплатен Wi-Fi', imgSrc: '/home/icons/wifi.png' },
+          { label: 'Напълно оборудвана кухня', imgSrc: '/home/icons/kitchen.png' },
+          { label: 'Частно паркомясто', imgSrc: '/home/icons/parking.png' },
+          {
+            label: 'На пешеходно разстояние от центъра на града',
+            imgSrc: '/home/icons/walking.png',
+          },
         ]
 
   return (
