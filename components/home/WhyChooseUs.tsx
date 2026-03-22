@@ -32,8 +32,8 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
         <div className="pt-3 pb-3 ml-2 lg:pt-0 lg:pb-10">
           <AnimateIn from="left" className="flex flex-col justify-center">
             <h2
-              className="text-2xl sm:text-xl md:text-2xl text-[var(--color-logo)] font-bold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 
-   text-center md:text-left lg:pt-10 md:pt-10 sm:pt-10"
+              className="text-[22px] md:text-2xl text-[var(--color-logo)] font-bold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 
+  text-center md:text-left lg:pt-10 md:pt-10 sm:pt-10"
             >
               {heading}
             </h2>
@@ -45,7 +45,7 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
               list-disc list-inside md:list-outside
               space-y-1.5 sm:space-y-2
               px-2 sm:px-4 md:px-6
-              text-xl sm:text-xl md:text-xl
+              text-lg sm:text-lg md:text-xl
               text-gray-800
             "
             >
