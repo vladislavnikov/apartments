@@ -4,8 +4,8 @@ import Footer from 'components/Footer'
 import { Metadata } from 'next'
 import { Locale, LOCALES } from '@/shared/enum'
 import NavbarWrapper from 'components/navbar/NavbarWrapper'
-import SeoJsonLd from 'components/SeoJsonLd'
 import { getSiteUrl, isNoIndex } from '@/lib/site'
+import SeoJsonLd from 'components/SeoJsonLd'
 
 export async function generateMetadata({
   params,
