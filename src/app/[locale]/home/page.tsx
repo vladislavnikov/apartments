@@ -5,6 +5,7 @@ import TransparentNav from 'components/navbar/homeNavbar'
 import HeroVideo from 'components/home/videoCarousel'
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { pageMetadata } from '@/lib/seo-meta'
 
 export async function generateMetadata({
@@ -75,7 +76,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="w-full">
-      <div className="relative w-full h-[100vh] sm:h-[32vh] md:h-[100vh] lg:h-82vh]">
+      <div className="relative h-[100vh] w-full sm:h-[32vh] md:h-[100vh] lg:h-[82vh]">
         <HeroVideo />
 
         <div className="absolute top-0 left-0 w-full z-20">
@@ -98,7 +99,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               WebkitMaskComposite: 'source-in',
             }}
           >
-            <img src="/logo.png" alt="Logo" className="h-100 w-200 object-contain mx-auto" />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={400}
+              height={200}
+              priority
+              className="mx-auto h-100 w-200 object-contain"
+            />
             <p className="text- font-medium text-[var(--color-logo)] sm:text-base md:text-base lg:text-xl leading-relaxed -translate-y-17 sm:-translate-y-17 md:-translate-y-20 lg:-translate-y-25">
               {main.text}
             </p>

@@ -50,7 +50,7 @@ export default function TransparentNav() {
       <nav className="w-full z-20 backdrop-blur-xs bg-white/30 ">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4 sm:px-6">
           {/* Left side */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0">
             <button
               type="button"
               onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -76,9 +76,13 @@ export default function TransparentNav() {
             <LanguageChanger />
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="absolute left-1/2 -translate-x-1/2 max-w-[40%]">
             <Link href={withLocale('/home')}>
-              <img src="/logo.png" alt="Logo" className="h-22 w-44 object-contain" />
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="h-16 w-28 sm:h-20 sm:w-36 md:h-22 md:w-44 object-contain"
+              />
             </Link>
           </div>
 

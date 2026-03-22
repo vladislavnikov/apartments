@@ -66,20 +66,20 @@ export default function TopNav() {
             <LanguageChanger />
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="absolute left-1/2 -translate-x-1/2 max-w-[40%]">
             <Link href={withLocale('/home')}>
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-18 w-36 sm:h-20 sm:w-40 md:h-22 md:w-44 object-contain"
+                className="h-16 w-28 sm:h-20 sm:w-36 md:h-22 md:w-44 object-contain"
               />
             </Link>
           </div>
 
           <Link
             href={withLocale('/booking')}
-            className="bg-white text-[var(--color-logo)] text-base font-bold px-4 py-2 rounded hover:bg-white/30 transition-all duration-200"
             style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
+            className="bg-white text-[#15385f] text-base sm:text-base font-bold px-2 py-1 sm:px-4 sm:py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
           >
             {locale === Locale.EN ? 'Book now' : 'Резервивай'}
           </Link>

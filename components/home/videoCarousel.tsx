@@ -8,7 +8,8 @@ export default function HeroVideo() {
       loop
       muted
       playsInline
-      className="w-full h-full object-cover"
+      preload="metadata"
+      className="h-full w-full object-cover"
     />
   )
 }

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
@@ -31,12 +32,15 @@ function ImageGroup({
     >
       {images.map((img, i) => (
         <div key={`${hidden ? 'clone' : 'main'}-${i}`} className="flex-shrink-0">
-          <div className="relative w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
-            <img
+          <div className="relative h-[160px] w-[160px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[220px] sm:w-[220px] md:h-[260px] md:w-[260px]">
+            <Image
               src={getUrl(img)}
               alt={img.alt || `Apartment image ${i + 1}`}
+              fill
+              sizes="(max-width: 640px) 160px, (max-width: 768px) 220px, 260px"
+              className="object-cover"
               loading="lazy"
-              className="absolute inset-0 block !h-full !w-full object-cover"
+              decoding="async"
             />
           </div>
         </div>
@@ -83,7 +87,6 @@ export default function HorizontalImageCarousel({ images }: Props) {
         .carousel-track {
           display: flex;
           width: max-content;
-          will-change: transform;
         }
 
         .carousel-track.is-ready {
