@@ -32,7 +32,7 @@ export default function WhyChooseUs({ locale }: { locale: Locale }) {
         <div className="pt-3 pb-3 ml-2 lg:pt-0 lg:pb-10">
           <AnimateIn from="left" className="flex flex-col justify-center">
             <h2
-              className="text-lg sm:text-xl md:text-2xl text-[var(--color-logo)] font-bold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 
+              className="text-2xl sm:text-xl md:text-2xl text-[var(--color-logo)] font-bold mb-3 sm:mb-4 px-2 sm:px-4 md:px-6 
    text-center md:text-left lg:pt-10 md:pt-10 sm:pt-10"
             >
               {heading}

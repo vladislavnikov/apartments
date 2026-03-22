@@ -117,7 +117,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <ExtrasRow locale={loc} />
 
       <div className="bg-[var(--color-navbar)] py-6 sm:py-6 flex items-center justify-center">
-        <p className="max-w-6xl text-xl sm:text-xl md:text-xl text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
+        <p className="max-w-6xl text-lg sm:text-lg md:text-xl text-black leading-relaxed whitespace-pre-line px-4 sm:px-6 text-center">
           {welcomeText}
         </p>
       </div>

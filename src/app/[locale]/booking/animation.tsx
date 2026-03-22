@@ -17,7 +17,7 @@ export default function AnimateIn({ children, from, className = '' }: Props) {
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true)
       },
-      { threshold: 0.8 },
+      { threshold: 0.6 },
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
