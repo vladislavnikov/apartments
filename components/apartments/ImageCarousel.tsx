@@ -7,6 +7,17 @@ import { Img } from '@/app/[locale]/apartments/types'
 export default function ImageCarousel({ images, title }: { images: Img[]; title: string }) {
   const imgs = useMemo(() => (images ?? []).filter((x) => !!x?.url), [images])
   const [active, setActive] = useState(0)
+
+  // One visible <img> swaps `src` on next/prev; without prefetch, each new URL
+  // waits on network + decode (feels frozen). Warm the cache for all slides.
+  useEffect(() => {
+    for (const item of imgs) {
+      const url = item.url
+      if (!url) continue
+      const pre = new Image()
+      pre.src = url
+    }
+  }, [imgs])
   const [open, setOpen] = useState(false)
   const safe = Math.min(active, Math.max(imgs.length - 1, 0))
   const hasMany = imgs.length > 1
