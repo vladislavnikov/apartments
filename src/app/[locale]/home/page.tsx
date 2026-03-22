@@ -76,7 +76,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="w-full">
-      <div className="relative h-[100vh] w-full sm:h-[32vh] md:h-[100vh] lg:h-[82vh]">
+      <div className="relative w-full h-[100vh] sm:h-[32vh] md:h-[100vh] lg:h-82vh]">
         <HeroVideo />
 
         <div className="absolute top-0 left-0 w-full z-20">
