@@ -1,6 +1,17 @@
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
 import { Locale } from '@/shared/enum'
 import AnimateIn from './animation'
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo-meta'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata('booking', locale)
+}
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -77,7 +88,7 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
       <div className="w-full  mt-6 h-[300px] sm:h-[360px] md:h-[400px] overflow-hidden">
         <iframe
           title="Apartments by the River"
-          src="https://www.google.com/maps?q=42.1514158,24.7381369&z=16&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2957.9487202855926!2d24.73547497659484!3d42.151384148258884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14acd100190aa58d%3A0xe22e28d09398676d!2sApartments%20by%20the%20river!5e0!3m2!1sen!2sbg!4v1774191808856!5m2!1sen!2sbg"
           className="w-full h-full"
           style={{ border: 0 }}
           loading="lazy"

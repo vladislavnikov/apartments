@@ -1,6 +1,17 @@
 import { Locale } from '../../../shared/enum'
 import { getApartments } from '../../api/apartments'
 import ApartmentsList from './apartments-list'
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo-meta'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata('apartments', locale)
+}
 
 export default async function ApartmentsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

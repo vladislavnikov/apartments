@@ -4,6 +4,17 @@ import { Locale } from '@/shared/enum'
 import TransparentNav from 'components/navbar/homeNavbar'
 import HeroVideo from 'components/home/videoCarousel'
 import HorizontalImageCarousel from 'components/booking/HorizontalImageCarousel'
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo-meta'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata('home', locale)
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
