@@ -2,12 +2,7 @@
 
 import { createPortal } from 'react-dom'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
-type Img = {
-  id: number
-  url: string
-  alt?: string | null
-}
+import { Img } from '@/app/[locale]/apartments/types'
 
 export default function ImageCarousel({ images, title }: { images: Img[]; title: string }) {
   const imgs = useMemo(() => (images ?? []).filter((x) => !!x?.url), [images])

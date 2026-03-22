@@ -85,7 +85,7 @@ export default function TransparentNav() {
           <Link
             href={withLocale('/booking')}
             style={{ boxShadow: '0px 0px 12px -1px #BDBDBF' }}
-            className="bg-white text-[#15385f] text-xs sm:text-sm font-medium px-2 py-1 sm:px-4 sm:py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
+            className="bg-white text-[#15385f] text-base sm:text-base font-bold px-2 py-1 sm:px-4 sm:py-2 rounded border border-white/30 hover:bg-white/30 transition-all duration-200"
           >
             {locale === Locale.EN ? 'Book now' : 'Резервивай'}
           </Link>
