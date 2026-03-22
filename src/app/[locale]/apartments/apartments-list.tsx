@@ -37,7 +37,7 @@ export default function ApartmentsList({ apartments, locale }: Props) {
                   {/* Desktop */}
                   <div className="hidden md:flex h-full items-center justify-center px-6 lg:px-8">
                     <div className="w-full">
-                      <h3 className="text-lg text-[var(--color-logo)] font-bold lg:text-xl font-semibold italic mb-5 text-center">
+                      <h3 className="text-lg text-[var(--color-logo)] font-bold lg:text-xl font-semibold mb-5 text-center">
                         {s.sectionTitle}
                       </h3>
 
