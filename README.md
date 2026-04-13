@@ -1,6 +1,6 @@
 # Apartments by the River 🌊
 
-🔗 Live Website: https://www.apartmentsbytheriver.bg/en/home
+🔗 Live Website: https://www.apartmentsbytheriver.bg
 
 A modern, multilingual apartment rental website built with **Next.js** and **Payload CMS**.
 
